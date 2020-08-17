@@ -52,7 +52,7 @@ public class Plan {
         return adminId;
     }
 
-    public void setAdminId(int admin_id) {
+    public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
 
@@ -63,7 +63,7 @@ public class Plan {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", created='" + created + '\'' +
-                ", admin_id=" + adminId +
+                ", adminId=" + adminId +
                 ']';
     }
 }
