@@ -2,7 +2,7 @@ package pl.coderslab.model;
 
 public class Admins {
 
-    private int id = 0;
+    private int id = 0;    // po co zero ? Może zostać bez wartości, w bazie i tak jest autoincrement.
     private String firstName;
     private String lastName;
     private String email;
