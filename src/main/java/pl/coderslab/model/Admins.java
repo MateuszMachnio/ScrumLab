@@ -2,7 +2,7 @@ package pl.coderslab.model;
 
 public class Admins {
 
-    private int id = 0;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;

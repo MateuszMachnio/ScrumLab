@@ -44,7 +44,7 @@ public class AdminsDao {
         return null;
     }
 
-    public String hashPassword(String password) {
+    private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
