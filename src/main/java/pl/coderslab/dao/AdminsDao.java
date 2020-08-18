@@ -44,12 +44,12 @@ public class AdminsDao {
         return null;
     }
 
-    public String hashPassword(String password) {
+    public String hashPassword(String password) {     //private Panie.
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public Admins read(int adminId) {
-        Admins admins = new Admins();
+        Admins admins = new Admins();  
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(READ_ADMINS_QUERY);
             preparedStatement.setInt(1, adminId);
@@ -70,7 +70,7 @@ public class AdminsDao {
         return admins;
     }
 
-    public void update(Admins admins) {
+    public void update(Admins admins) {   
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(UPDATE_ADMINS_QUERY);
             statement.setString(1, admins.getFirstName());
