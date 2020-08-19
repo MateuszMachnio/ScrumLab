@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="/WEB-INF/head.jsp" %>
+<%@include file="/WEB-INF/head.jspf" %>
 
 <body>
-<%@include file="/WEB-INF/header.jsp" %>
+<%@include file="/WEB-INF/header.jspf" %>
 
 
 <section class="padding-large bg-light">
@@ -136,6 +136,6 @@
     </div>
 </section>
 
-<%@include file="/WEB-INF/footer.jsp" %>
+<%@include file="/WEB-INF/footer.jspf" %>
 </body>
 </html>
