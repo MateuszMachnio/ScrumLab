@@ -13,6 +13,7 @@ public class AdminsDao {
 
     private static final String CREATE_ADMINS_QUERY = "INSERT INTO admins(first_name, last_name, email, password, superadmin, enable) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String READ_ADMINS_QUERY = "SELECT * FROM admins WHERE id = ?";
+    private static final String READ_ADMINS_BY_EMAIL_QUERY = "SELECT * FROM admins WHERE email = ?";
     private static final String UPDATE_ADMINS_QUERY = "UPDATE admins SET first_name = ?, last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
     private static final String DELETE_ADMINS_QUERY = "DELETE FROM admins WHERE id = ?";
     private static final String FIND_ALL_ADMINS_QUERY = "SELECT * FROM admins";
@@ -49,7 +50,7 @@ public class AdminsDao {
     }
 
     public Admins read(int adminId) {
-        Admins admins = new Admins();  
+        Admins admins = new Admins();
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(READ_ADMINS_QUERY);
             preparedStatement.setInt(1, adminId);
@@ -70,7 +71,29 @@ public class AdminsDao {
         return admins;
     }
 
-    public void update(Admins admins) {   
+    public Admins readByEmail(String email) {
+        Admins admins = new Admins();
+        try (Connection connection = DbUtil.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_ADMINS_BY_EMAIL_QUERY);
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    admins.setFirstName(resultSet.getString("first_name"));
+                    admins.setLastName(resultSet.getString("last_name"));
+                    admins.setEmail(resultSet.getString("email"));
+                    admins.setPassword(resultSet.getString("password"));
+                    admins.setSuperadmin(resultSet.getInt("superadmin"));
+                    admins.setEnable(resultSet.getInt("enable"));
+                    admins.setId(resultSet.getInt("id"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return admins;
+    }
+
+    public void update(Admins admins) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(UPDATE_ADMINS_QUERY);
             statement.setString(1, admins.getFirstName());
