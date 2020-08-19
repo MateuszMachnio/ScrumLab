@@ -10,7 +10,6 @@
 
 <html>
 <%@include file="WEB-INF/head.jspf" %>
-
 <body id="page-top">
 <%@include file="WEB-INF/header.jspf" %>
 <section class="padding-medium story bg-light" id="about">
@@ -20,7 +19,6 @@
                 <div class="div-img">
                 </div>
             </div>
-
             <div class="col-7 ml-4">
                 <h1 class="pb-1">Kontakt z nami</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat

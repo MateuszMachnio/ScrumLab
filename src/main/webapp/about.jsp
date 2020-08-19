@@ -12,7 +12,6 @@
 <%@include file="WEB-INF/head.jspf" %>
 <body id="page-top">
 <%@include file="WEB-INF/header.jspf" %>
-
 <section class="padding-small details bg-light">
     <div class="container">
         <h1 align="center">O aplikacji</h1>

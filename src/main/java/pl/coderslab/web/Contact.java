@@ -10,11 +10,9 @@ import java.io.IOException;
 @WebServlet(name = "Contact", value = "/contact")
 public class Contact extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("/contact.jsp");
-
     }
 }
