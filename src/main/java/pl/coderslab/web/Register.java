@@ -28,12 +28,14 @@ public class Register extends HttpServlet {
         List<Admins> adminsList = adminsDao.findAll();
         for (Admins adminsTmp : adminsList) {
             if (adminsTmp.getEmail().equals(admins.getEmail())) {
-                response.sendRedirect("/repeatedEmail.jsp");
+                request.setAttribute("admins", admins);
+                getServletContext().getRequestDispatcher("/repeatedEmail.jsp").forward(request,response);
                 return;
             }
         }
         if (!password.equals(repassword)) {
-            response.sendRedirect("/wrongRepassword.jsp");
+            request.setAttribute("admins", admins);
+            getServletContext().getRequestDispatcher("/wrongRepassword.jsp").forward(request,response);
             return;
         }
         adminsDao.create(admins);
