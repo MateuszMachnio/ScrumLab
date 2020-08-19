@@ -133,17 +133,15 @@ public class AdminsDao {
         }
     }
 
-    public boolean isSuperAdmin(int adminId){
+    public boolean isSuperAdmin(int adminId) {
         Admins userToCheck = new Admins();
         userToCheck = read(adminId);
-        if (userToCheck.getSuperadmin() == 1){
+        if (userToCheck.getSuperadmin() == 1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
+
+
     }
-
-
-
 }
