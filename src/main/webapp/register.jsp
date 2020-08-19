@@ -3,17 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="/WEB-INF/head.jsp" %>
+<%@include file="/WEB-INF/head.jspf" %>
 
 <body>
-<%@include file="/WEB-INF/header.jsp" %>
+<%@include file="/WEB-INF/header.jspf" %>
 
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
             <div class="container w-25">
-                <!-- fix action, method -->
-                <!-- add name attribute for all inputs -->
                 <form class="padding-small text-center" action="<c:url value="/register"/>" method="post">
                     <h1 class="text-color-darker">Rejestracja</h1>
                     <div class="form-group">
@@ -38,6 +36,6 @@
     </div>
 </section>
 
-<%@include file="/WEB-INF/footer.jsp" %>
+<%@include file="/WEB-INF/footer.jspf" %>
 </body>
 </html>
