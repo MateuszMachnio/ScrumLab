@@ -9,10 +9,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<head>
-    <%@include file="WEB-INF/head.jspf" %>
+<!-- <head>
+    <%@include file="WEB-INF/head.jspf" %> //tu tak samo jak about
     <title>Kontakt</title>
-</head>
+</head> -->
 <body id="page-top">
 <%@include file="WEB-INF/header.jspf" %>
 <section class="padding-medium story bg-light" id="about">
