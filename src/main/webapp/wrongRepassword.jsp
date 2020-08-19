@@ -16,13 +16,13 @@
                 <form class="padding-small text-center" action="<c:url value="/register"/>" method="post">
                     <h1 class="text-color-darker">Rejestracja</h1>
                     <div class="form-group">
-                        <label for="name"></label><input type="text" class="form-control" id="name" name="name" placeholder="podaj imię">
+                        <label for="name"></label><input type="text" class="form-control" id="name" name="name" value="${admins.firstName}">
                     </div>
                     <div class="form-group">
-                        <label for="surname"></label><input type="text" class="form-control" id="surname" name="surname" placeholder="podaj nazwisko">
+                        <label for="surname"></label><input type="text" class="form-control" id="surname" name="surname" value="${admins.lastName}">
                     </div>
                     <div class="form-group">
-                        <label for="email"></label><input type="email" class="form-control" id="email" name="email" placeholder="podaj email">
+                        <label for="email"></label><input type="email" class="form-control" id="email" name="email" value="${admins.email}">
                     </div>
                     <div class="form-group">
                         <label for="password"></label><input type="password" class="form-control" id="password" name="password" placeholder="podaj hasło">
