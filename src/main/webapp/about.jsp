@@ -9,10 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<head>
-    <%@include file="WEB-INF/head.jspf" %>
-    <title>O aplikacji</title>
-</head>
+<%@include file="WEB-INF/head.jspf" %>
 <body id="page-top">
 <%@include file="WEB-INF/header.jspf" %>
 
