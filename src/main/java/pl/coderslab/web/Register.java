@@ -37,7 +37,7 @@ public class Register extends HttpServlet {
             return;
         }
         adminsDao.create(admins);
-        response.sendRedirect("/login");
+        response.sendRedirect("/login");    // mnie przekierowuje na stronę główną czyli localhost:8080/home.jsp, w sumie po rejestracji warto by stworzyć stronę z info "Użytkownik zarejestrowany pomyślnie" i link do logowania ?
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
