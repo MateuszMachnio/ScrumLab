@@ -10,9 +10,9 @@
 
 <html>
 <head>
-    <%@include file="WEB-INF/head.jspf" %>
-    <title>O aplikacji</title>
-</head>
+    <%@include file="WEB-INF/head.jspf" %> // <--to wystarczy
+    <title>O aplikacji</title>  //title nie masz co dodawać bo w head.jspf już jest
+</head> // to też już jest w head.jspf
 <body id="page-top">
 <%@include file="WEB-INF/header.jspf" %>
 
