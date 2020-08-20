@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @WebServlet(name = "Register", value = "/register")
@@ -39,7 +41,8 @@ public class Register extends HttpServlet {
             return;
         }
         adminsDao.create(admins);
-        response.sendRedirect("/login");    
+        String message = "Zostałeś zarejestrowany. Teraz proszę się zalogować aby móc korzystać z aplikacji.";
+        response.sendRedirect("/login?msg=" + URLEncoder.encode(message, StandardCharsets.UTF_8));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
