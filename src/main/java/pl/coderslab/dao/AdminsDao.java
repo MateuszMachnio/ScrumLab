@@ -123,8 +123,7 @@ public class AdminsDao {
     }
 
     public boolean isEnable(int adminId){
-        Admins userToCheck = new Admins();
-        userToCheck = read(adminId);
+        Admins userToCheck = read(adminId); //poprawiłem
         if (userToCheck.getEnable() == 1){
             return true;
         }
@@ -134,8 +133,7 @@ public class AdminsDao {
     }
 
     public boolean isSuperAdmin(int adminId) {
-        Admins userToCheck = new Admins();
-        userToCheck = read(adminId);
+        Admins userToCheck = read(adminId);
         if (userToCheck.getSuperadmin() == 1) {
             return true;
         } else {
