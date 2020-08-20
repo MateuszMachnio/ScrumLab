@@ -1,6 +1,7 @@
 package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
+import pl.coderslab.model.Admins;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
 
@@ -18,6 +19,7 @@ public class RecipeDao {
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE recipe SET name = ? , ingredients = ?, description = ?, updated =NOW(), preparation_time =?, preparation =?,admin_id =? WHERE	id = ?;";
+    private static final String SELECT_RECIPE_BY_ADMIN_ID = "SELECT  COUNT(*) from recipe WHERE  admin_id = 1"; //z aktualnie zalogowanego a nie z jedynki...
 
 
     /**
@@ -31,7 +33,9 @@ public class RecipeDao {
     public Recipe create(Recipe recipe) throws SQLException {
 
         try (Connection connection = DbUtil.getConnection();
-                /*Connection connection = DbUtil2.connect("scrumlab");*/
+
+               /* Connection connection = DbUtil2.connect("scrumlab");*/
+
              PreparedStatement createRecipe = connection.prepareStatement(CREATE_RECIPE_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             createRecipe.setString(1, recipe.getName());
@@ -101,7 +105,10 @@ public class RecipeDao {
     public void update(Recipe recipe) {
 
         try (Connection connection = DbUtil.getConnection();
-                /*Connection connection = DbUtil2.connect("scrumlab");*/
+
+               /* Connection connection = DbUtil2.connect("scrumlab");*/
+
+
              PreparedStatement updateRecipe = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
 
             updateRecipe.setString(1, recipe.getName());
@@ -149,9 +156,15 @@ public class RecipeDao {
 
     public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();
+
+        try( Connection connection = DbUtil.getConnection();
+                /*Connection connection = DbUtil2.connect("scrumlab");*/
+        PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+
         try (Connection connection = DbUtil.getConnection();
                 /*Connection connection = DbUtil2.connect("scrumlab");*/
              PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+
              ResultSet resultSet = findAll.executeQuery()) {
 
             while ((resultSet.next())) {
@@ -171,6 +184,25 @@ public class RecipeDao {
             e.printStackTrace();
         }
         return recipes;
+    }
+
+    public int amountOfRecipes(int userId){
+        int result= 0;
+
+        try( Connection connection = DbUtil.getConnection();
+            /*    Connection connection = DbUtil2.connect("scrumlab");*/
+                PreparedStatement findCount = connection.prepareStatement(SELECT_RECIPE_BY_ADMIN_ID);
+            //sam wiesz co ;)
+                ResultSet resultSet = findCount.executeQuery()) {
+
+            while ((resultSet.next())){
+
+                result = resultSet.getInt(1);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

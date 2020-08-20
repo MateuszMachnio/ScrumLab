@@ -145,4 +145,24 @@ public class AdminsDao {
         return adminsList;
     }
 
+    public boolean isEnable(int adminId){
+        Admins userToCheck = read(adminId); //poprawiłem
+        if (userToCheck.getEnable() == 1){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isSuperAdmin(int adminId) {
+        Admins userToCheck = read(adminId);
+        if (userToCheck.getSuperadmin() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
 }
