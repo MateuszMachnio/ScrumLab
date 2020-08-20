@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @WebServlet(name = "Register", value = "/register")
@@ -29,13 +31,13 @@ public class Register extends HttpServlet {
         for (Admins adminsTmp : adminsList) {
             if (adminsTmp.getEmail().equals(admins.getEmail())) {
                 request.setAttribute("admins", admins);
-                getServletContext().getRequestDispatcher("/repeatedEmail.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/repeatedEmail.jsp").forward(request, response);
                 return;
             }
         }
         if (!password.equals(repassword)) {
             request.setAttribute("admins", admins);
-            getServletContext().getRequestDispatcher("/wrongRepassword.jsp").forward(request,response);
+            getServletContext().getRequestDispatcher("/wrongRepassword.jsp").forward(request, response);
             return;
         }
         adminsDao.create(admins);
