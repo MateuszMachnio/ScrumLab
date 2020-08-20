@@ -7,7 +7,7 @@
         </a>
         <ul class="nav nounderline text-uppercase">
             <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="login.html">logowanie</a>
+                <a class="nav-link color-header" href="/login">logowanie</a>
             </li>
             <li class="nav-item ml-4">
                 <a class="nav-link color-header" href="<c:url value="/register"/>">rejestracja</a>
@@ -19,7 +19,7 @@
                 <a class="nav-link disabled" href="recipes.html">Przepisy</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="/kontakt">Kontakt</a>
+                <a class="nav-link disabled" href="/contact">Kontakt</a>
             </li>
         </ul>
     </nav>
