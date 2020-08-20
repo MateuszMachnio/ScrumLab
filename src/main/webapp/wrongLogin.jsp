@@ -15,7 +15,7 @@
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
-            <h2 style="text-align: center; color: red" class="alert-info">Błędny login</h2>
+            <h2 style="text-align: center; color: red" class="alert-info">Błędny email</h2>
             <div class="container w-25">
                 <form class="padding-small text-center" action="<c:url value="/login"/>" method="post">
                     <h1 class="text-color-darker">Logowanie</h1>
