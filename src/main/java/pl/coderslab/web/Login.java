@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
                 session.setMaxInactiveInterval(1200);
                 session.setAttribute("logged", user.getId());
                 System.out.println("tworzenie sesji");
-                response.sendRedirect("/");
+                response.sendRedirect("");
                 //jeśli nieaktywny odsyła do strony logowania z komunikatem ze nieaktywny
             } else if (checkPass && user.getEnable() != 1) {
                 response.sendRedirect("/notActiveUser.jsp");
