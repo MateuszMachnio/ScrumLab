@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("/notActiveUser.jsp");
             } else {
                 //jeśli hasło się nie zgadza odsyłamy do logowania z wypisanym juz emailem
-                request.setAttribute("email", user.getEmail());
+                request.setAttribute("email", email);
                 getServletContext().getRequestDispatcher("/wrongPassword.jsp").forward(request, response);
             }
             //jeśli uzytkownika nie ma w bazie odsyłamy do logowania
