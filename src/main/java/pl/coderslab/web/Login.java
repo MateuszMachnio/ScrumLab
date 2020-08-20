@@ -30,14 +30,21 @@ public class Login extends HttpServlet {
             Admins user = adminsDao.readByEmail(email);
             //sprawdzamy czy haslo uzytkownika sie zgadza
             boolean checkPass = BCrypt.checkpw(password, user.getPassword());
-            //jeśli hasło i enable sie zgadza otwieramy sesje
+            //jeśli hasło i enable sie zgadza to :
+            // 1.sprawdzamy sesje
             if (checkPass && user.getEnable() == 1) {
-                HttpSession session = request.getSession();
-                session.setMaxInactiveInterval(1200);
-                session.setAttribute("logged", user.getId());
-                System.out.println("tworzenie sesji");
-                response.sendRedirect("");
-                //jeśli nieaktywny odsyła do strony logowania z komunikatem ze nieaktywny
+                HttpSession oldSession = request.getSession();
+                //1.1 jeśli sesja nie posiada atrybutu loggedUser to ją zamykamy i otwieramy nową, przypisujac atrybut
+                if (!oldSession.getAttribute("loggedUser").equals(user.getId())) {
+                    oldSession.invalidate();
+                    HttpSession newSession = request.getSession(true);
+                    newSession.setMaxInactiveInterval(1200); //ustawiamy czas sesji na 20 minut
+                    newSession.setAttribute("loggedUser", user.getId());
+                    System.out.println("tworzenie sesji");// dla potwierdzenia otwarcia sesji wypisujemy na konsoli
+                }
+                // 2. przepuszczamy użytkownika do głównego dashboardu
+                response.sendRedirect("/app");
+                //jeśli użytkownik nieaktywny to odsyła do strony logowania z komunikatem ze nieaktywny
             } else if (checkPass && user.getEnable() != 1) {
                 response.sendRedirect("/notActiveUser.jsp");
             } else {
