@@ -17,6 +17,7 @@ public class PlanDao {
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
+    private static final String AMOUNT_PLANS_BY_ADMIN_ID = "SELECT  COUNT(*) from plan WHERE  admin_id = ?";
 
     //Get plan by id
     public Plan read(Integer planId) {
@@ -114,6 +115,22 @@ public class PlanDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int amountOfPlans(int adminId){
+        int result = 0;
+        try (Connection connection = DbUtil.getConnection()) {
+            PreparedStatement findCount = connection.prepareStatement(AMOUNT_PLANS_BY_ADMIN_ID);
+            findCount.setInt(1, adminId);
+            try (ResultSet resultSet = findCount.executeQuery()) {
+                if (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
