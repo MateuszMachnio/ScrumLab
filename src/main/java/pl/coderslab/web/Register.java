@@ -39,7 +39,8 @@ public class Register extends HttpServlet {
             return;
         }
         adminsDao.create(admins);
-        response.sendRedirect("/login");    
+        String message = "Zostałeś zarejestrowany. Zaloguj się aby korzystać z aplikacji.";
+        response.sendRedirect("/login?msg=" + URLEncoder.encode(message, StandardCharsets.UTF_8));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

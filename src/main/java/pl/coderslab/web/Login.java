@@ -60,7 +60,10 @@ public class Login extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/login.jsp");
-
+        String msg = request.getParameter("msg");
+        if (msg != null) {
+            request.setAttribute("msg", msg);
+        }
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
     }
 }
