@@ -160,10 +160,7 @@ public class RecipeDao {
         try( Connection connection = DbUtil.getConnection();
                 /*Connection connection = DbUtil2.connect("scrumlab");*/
         PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
-
-        try (Connection connection = DbUtil.getConnection();
-                /*Connection connection = DbUtil2.connect("scrumlab");*/
-             PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+        
 
              ResultSet resultSet = findAll.executeQuery()) {
 
