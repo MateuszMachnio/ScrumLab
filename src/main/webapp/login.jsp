@@ -13,6 +13,9 @@
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
+            <c:if test="${not empty msg}">
+                <h3 style='text-align: center; color: red' class='alert-info'>${msg}</h3>
+            </c:if>
             <div class="container w-25">
                 <form class="padding-small text-center" action="<c:url value="/login"/>" method="post">
                     <h1 class="text-color-darker">Logowanie</h1>
