@@ -4,7 +4,6 @@ import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Admins;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
-import pl.coderslab.utils.DbUtil2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +23,7 @@ public class RecipeDao {
 
 
     /**
-     * Create recpie
+     * Create recipe
      *
      * @param recipe
      * @return
@@ -34,7 +33,9 @@ public class RecipeDao {
     public Recipe create(Recipe recipe) throws SQLException {
 
         try (Connection connection = DbUtil.getConnection();
+
                /* Connection connection = DbUtil2.connect("scrumlab");*/
+
              PreparedStatement createRecipe = connection.prepareStatement(CREATE_RECIPE_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             createRecipe.setString(1, recipe.getName());
@@ -104,7 +105,10 @@ public class RecipeDao {
     public void update(Recipe recipe) {
 
         try (Connection connection = DbUtil.getConnection();
+
                /* Connection connection = DbUtil2.connect("scrumlab");*/
+
+
              PreparedStatement updateRecipe = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
 
             updateRecipe.setString(1, recipe.getName());
@@ -135,7 +139,7 @@ public class RecipeDao {
             deleteRecipe.executeUpdate();
 
 
-       /*     boolean deleted = deleteRecipe.execute();*/
+            /*     boolean deleted = deleteRecipe.execute();*/
             if (!deleteRecipe.execute()) {
                 throw new NotFoundException("Recipe not found");
             }
@@ -148,18 +152,22 @@ public class RecipeDao {
 
     /**
      * Find all recipes
-     *
-     *
      */
 
-    public List<Recipe> findAll(){
+    public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();
+
         try( Connection connection = DbUtil.getConnection();
                 /*Connection connection = DbUtil2.connect("scrumlab");*/
         PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+
+        try (Connection connection = DbUtil.getConnection();
+                /*Connection connection = DbUtil2.connect("scrumlab");*/
+             PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+
              ResultSet resultSet = findAll.executeQuery()) {
 
-            while ((resultSet.next())){
+            while ((resultSet.next())) {
                 Recipe recipeToAdd = new Recipe();
                 recipeToAdd.setID(resultSet.getInt("id"));
                 recipeToAdd.setPreparationTime(resultSet.getInt("preparation_time"));
@@ -172,7 +180,7 @@ public class RecipeDao {
                 recipeToAdd.setPreparation(resultSet.getString("preparation"));
                 recipes.add(recipeToAdd);
             }
-    }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return recipes;

@@ -2,7 +2,6 @@ package pl.coderslab.dao;
 
 import pl.coderslab.model.Plan;
 import pl.coderslab.utils.DbUtil;
-import pl.coderslab.utils.DbUtil2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,13 +17,13 @@ public class PlanDao {
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
+    private static final String AMOUNT_PLANS_BY_ADMIN_ID = "SELECT  COUNT(*) from plan WHERE  admin_id = ?";
 
     //Get plan by id
     public Plan read(Integer planId) {
         Plan plan = new Plan();
-        try (/*Connection connection = DbUtil.getConnection();*/
-                Connection connection = DbUtil2.connect("scrumlab");
-                PreparedStatement statement = connection.prepareStatement(READ_PLAN_QUERY)
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(READ_PLAN_QUERY)
         ) {
             statement.setInt(1, planId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -45,8 +44,7 @@ public class PlanDao {
     //Return all books
     public List<Plan> findAll() {
         List<Plan> planList = new ArrayList<>();
-        try (/*Connection connection = DbUtil.getConnection();*/
-                Connection connection = DbUtil2.connect("scrumlab");
+        try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_PLANS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
@@ -66,8 +64,7 @@ public class PlanDao {
 
     //Update plan
     public void update(Plan plan) {
-        try (/*Connection connection = DbUtil.getConnection();*/
-                Connection connection = DbUtil2.connect("scrumlab");
+        try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PLAN_QUERY)) {
             statement.setInt(5, plan.getId());
             statement.setString(1, plan.getName());
@@ -82,8 +79,7 @@ public class PlanDao {
 
     // Create Plan
     public Plan create(Plan plan) {
-        try (/*Connection connection = DbUtil.getConnection();*/
-                Connection connection = DbUtil2.connect("scrumlab");
+        try (Connection connection = DbUtil.getConnection();
              PreparedStatement insertStm = connection.prepareStatement(CREATE_PLAN_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             insertStm.setString(1, plan.getName());
@@ -112,8 +108,7 @@ public class PlanDao {
 
     //Remove plan by id
     public void delete(Integer planId) {
-        try (/*Connection connection = DbUtil.getConnection();*/
-                Connection connection = DbUtil2.connect("scrumlab");
+        try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PLAN_QUERY)) {
             statement.setInt(1, planId);
             statement.executeUpdate();
@@ -122,12 +117,21 @@ public class PlanDao {
         }
     }
 
-    public static void main(String[] args) {
-        Plan plan = new Plan("plan1","plan1","plan222",1);
-        PlanDao planDao = new PlanDao();
-       /* planDao.create(plan);*/
-        planDao.delete(7);
-
+    public int amountOfPlans(int adminId){
+        int result = 0;
+        try (Connection connection = DbUtil.getConnection()) {
+            PreparedStatement findCount = connection.prepareStatement(AMOUNT_PLANS_BY_ADMIN_ID);
+            findCount.setInt(1, adminId);
+            try (ResultSet resultSet = findCount.executeQuery()) {
+                if (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
+
 }
 
