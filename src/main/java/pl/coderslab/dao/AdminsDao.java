@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AdminsDao {
 
-    private static final String CREATE_ADMINS_QUERY = "INSERT INTO admins(first_name, last_name, email, password, superadmin, enable) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String CREATE_ADMINS_QUERY = "INSERT INTO admins(first_name, last_name, email, password, superadmin) VALUES (?, ?, ?, ?, ?)";
     private static final String READ_ADMINS_QUERY = "SELECT * FROM admins WHERE id = ?";
     private static final String READ_ADMINS_BY_EMAIL_QUERY = "SELECT * FROM admins WHERE email = ?";
     private static final String UPDATE_ADMINS_QUERY = "UPDATE admins SET first_name = ?, last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
@@ -26,7 +26,7 @@ public class AdminsDao {
             statement.setString(3, admins.getEmail());
             statement.setString(4, hashPassword(admins.getPassword()));
             statement.setInt(5, admins.getSuperadmin());
-            statement.setInt(6, admins.getEnable());
+//            statement.setInt(6, admins.getEnable());
             int result = statement.executeUpdate();
             if (result != 1) {
                 throw new RuntimeException("Execute update returned " + result);
