@@ -30,7 +30,7 @@ public class RecipeDao {
      */
 
 
-    public Recipe create(Recipe recipe) throws SQLException {
+    public Recipe create(Recipe recipe)  {
 
         try (Connection connection = DbUtil.getConnection();
 

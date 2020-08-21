@@ -54,7 +54,7 @@
                     <div class="menu-item border-dashed">
                         <a href="">
                             <i class="far fa-plus-square icon-plus-square"></i>
-                            <span class="title">dodaj przepis</span>
+                            <span class="title"  >dodaj przepis  </span>
                         </a>
                     </div>
                     <div class="menu-item border-dashed">
