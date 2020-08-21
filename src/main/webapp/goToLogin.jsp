@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: szymon
-  Date: 8/19/20
-  Time: 6:32 PM
+  Date: 8/21/20
+  Time: 4:02 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,7 +15,7 @@
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
-            <h2 style="text-align: center; color: red" class="alert-info">Błędny email</h2>
+            <h2 style="text-align: center; color: red" class="alert-info">Zaloguj się, aby mieć dostęp do aplikacji</h2>
             <div class="container w-25">
                 <form class="padding-small text-center" action="<c:url value="/login"/>" method="post">
                     <h1 class="text-color-darker">Logowanie</h1>
