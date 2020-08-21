@@ -52,10 +52,13 @@ public class Login extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String msg = request.getParameter("msg");
         if (msg != null) {
             request.setAttribute("msg", msg);
         }
-        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        if (session.getAttribute("loggedUser") == null) {
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        } else response.sendRedirect("/app");
     }
 }
