@@ -19,7 +19,7 @@ public class appFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession(false);
 
-        if(session ==null || session.getAttribute("logged") ==null){
+        if(session ==null || session.getAttribute("loggedUser") ==null){
 
             response.sendRedirect("/login");
             return;
