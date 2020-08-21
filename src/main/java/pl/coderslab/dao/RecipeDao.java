@@ -19,7 +19,7 @@ public class RecipeDao {
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE recipe SET name = ? , ingredients = ?, description = ?, updated =NOW(), preparation_time =?, preparation =?,admin_id =? WHERE	id = ?;";
-    private static final String SELECT_RECIPE_BY_ADMIN_ID = "SELECT  COUNT(*) from recipe WHERE  admin_id = 1"; //z aktualnie zalogowanego a nie z jedynki...
+    private static final String SELECT_RECIPE_BY_ADMIN_ID = "SELECT  COUNT(*) from recipe WHERE  admin_id = ?";
 
 
     /**
@@ -183,20 +183,17 @@ public class RecipeDao {
         return recipes;
     }
 
-    public int amountOfRecipes(int userId){
-        int result= 0;
-
-        try( Connection connection = DbUtil.getConnection();
-            /*    Connection connection = DbUtil2.connect("scrumlab");*/
-                PreparedStatement findCount = connection.prepareStatement(SELECT_RECIPE_BY_ADMIN_ID);
-            //sam wiesz co ;)
-                ResultSet resultSet = findCount.executeQuery()) {
-
-            while ((resultSet.next())){
-
-                result = resultSet.getInt(1);
+    public int amountOfRecipes(int adminId){
+        int result = 0;
+        try (Connection connection = DbUtil.getConnection()) {
+            PreparedStatement findCount = connection.prepareStatement(SELECT_RECIPE_BY_ADMIN_ID);
+            findCount.setInt(1, adminId);
+            try (ResultSet resultSet = findCount.executeQuery()) {
+                if (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
