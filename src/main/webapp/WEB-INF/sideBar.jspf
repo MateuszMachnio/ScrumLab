@@ -1,44 +1,41 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chmi3l
-  Date: 21.08.2020
-  Time: 20:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 483dabb3c5d9cb7e849e896babe5fbe961f0278c
 <ul class="nav flex-column long-bg">
     <li class="nav-item">
-        <a class="nav-link" href="/dashboard.html">
+        <a class="nav-link" href="<c:url value="/app"/>">
             <span>Pulpit</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/app-recipes.html">
+        <a class="nav-link" href="<c:url value="/app/recipe/list"/>">
             <span>Przepisy</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/app-schedules.html">
+        <a class="nav-link" href="<c:url value="/app/plan/list"/>">
             <span>Plany</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/app-edit-user-data.html">
+        <a class="nav-link" href="<c:url value="/app/userData/edit"/>">
             <span>Edytuj dane</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link disabled" href="/app-edit-password.html">
+        <a class="nav-link disabled" href="<c:url value="/app/password/edit"/>">
             <span>Zmień hasło</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/super-admin-users.html">
+        <a class="nav-link" href="<c:url value="/superAdmin/users"/>">
             <span>Użytkownicy</span>
             <i class="fas fa-angle-right"></i>
         </a>

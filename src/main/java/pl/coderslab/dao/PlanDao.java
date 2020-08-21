@@ -1,7 +1,12 @@
 package pl.coderslab.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.model.Plan;
+
 import pl.coderslab.model.Recipe;
+
+import pl.coderslab.model.PlanDetails;
+
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -11,8 +16,13 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.Date;
+
+import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 
 public class PlanDao  {
     // SQL QUERY
@@ -23,6 +33,15 @@ public class PlanDao  {
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
     private static final String AMOUNT_PLANS_BY_ADMIN_ID = "SELECT  COUNT(*) from plan WHERE  admin_id = ?";
     private  static  final String SELECT_ALL_PLANS_SORTED ="SELECT * FROM plan ORDER BY created DESC;";
+    private static final String RECENT_PLAN_BY_ADMIN_ID = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description\n" +
+            "FROM `recipe_plan`\n" +
+            "         JOIN day_name on day_name.id=day_name_id\n" +
+            "         JOIN recipe on recipe.id=recipe_id WHERE\n" +
+            "        recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
+            "ORDER by day_name.display_order, recipe_plan.display_order;";
+    private static final String NAME_OF_RECENT_PLAN = "SELECT name FROM plan WHERE plan.id = (SELECT MAX(id) from plan WHERE admin_id = ?);";
+
+
     //Get plan by id
     public Plan read(Integer planId) {
         Plan plan = new Plan();
@@ -139,6 +158,7 @@ public class PlanDao  {
     }
 
 
+
     public List<Plan> findAllByDate() {
         List<Plan> planList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
@@ -153,12 +173,59 @@ public class PlanDao  {
                 planToAdd.setAdminId(resultSet.getInt("admin_id"));
                 planList.add(planToAdd);
             }
+        }catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return planList;
+        }
+
+    public Map<String, List<PlanDetails>> detailsOfRecentPlan(int adminId) {
+        Map<String, List<PlanDetails>> planDetailsMap = new HashMap();
+        List<PlanDetails> planDetailsList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(RECENT_PLAN_BY_ADMIN_ID)) {
+            statement.setInt(1, adminId);
+            ResultSet resultSet = statement.executeQuery();
+            String valueOfdayName = "";
+            while (resultSet.next()) {
+                String tmp = resultSet.getString("day_name");
+                if (!valueOfdayName.equals(tmp)) {
+                    planDetailsList = new ArrayList<>();
+                }
+                PlanDetails planToAdd = new PlanDetails();
+//                planToAdd.setDayName(resultSet.getString("day_name"));
+                planToAdd.setMealName(resultSet.getString("meal_name"));
+                planToAdd.setRecipeName(resultSet.getString("recipe_name"));
+                planToAdd.setRecipeDescription(resultSet.getString("recipe_description"));
+                planDetailsList.add(planToAdd);
+                planDetailsMap.put(tmp, planDetailsList);
+                valueOfdayName = tmp;
+
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return planDetailsMap;
+    }
+
+    public String getNameOfRecentPlan(int adminId){
+        String result = "";
+        try (Connection connection = DbUtil.getConnection()) {
+            PreparedStatement findCount = connection.prepareStatement(NAME_OF_RECENT_PLAN);
+            findCount.setInt(1, adminId);
+            try (ResultSet resultSet = findCount.executeQuery()) {
+                if (resultSet.next()) {
+                    result = resultSet.getString(1);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return planList;
+        return result;
     }
-
 
 }
 
