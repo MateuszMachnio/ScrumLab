@@ -48,7 +48,7 @@
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Opis przepisu</th>
-                                <td class="col-7"><textarea name ="description" id = "description" class="w-100 p-1" rows="5" required></textarea></td> 
+                                <td class="col-7"><textarea name ="description" id = "description" class="w-100 p-1" rows="5" required></textarea></td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Przygotowanie (minuty)</th>
