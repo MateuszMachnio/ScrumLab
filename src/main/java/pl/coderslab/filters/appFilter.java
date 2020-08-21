@@ -21,7 +21,7 @@ public class appFilter implements Filter {
 
         if(session ==null || session.getAttribute("loggedUser") ==null){
 
-            response.sendRedirect("/login");
+            response.sendRedirect("/goToLogin.jsp");
             return;
         }
 
