@@ -1,4 +1,3 @@
-/*
 package pl.coderslab.filters;
 
 import pl.coderslab.dao.AdminsDao;
@@ -35,4 +34,3 @@ public class appFilter implements Filter {
     }
 
 }
-*/
