@@ -1,6 +1,10 @@
 package pl.coderslab.model;
 
-public class Plan {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Plan implements Comparable<Plan>  {
     private int id;
     private String name;
     private String description;
@@ -66,5 +70,19 @@ public class Plan {
                 ", created='" + created + '\'' +
                 ", adminId=" + adminId +
                 ']';
+    }
+
+    @Override
+    public int compareTo(Plan o) {
+        try {
+            Date thisDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(this.getCreated());
+            Date nextDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(o.getCreated());
+
+            return thisDate.compareTo(nextDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
     }
 }

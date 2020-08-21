@@ -14,12 +14,12 @@ import java.util.List;
 
 public class RecipeDao {
 
-    private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name,ingredients,description,created,preparation_time,preparation,admin_id) VALUES (?,?,?,NOW(),?,?,?);";
+    private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name,ingredients,description,created,preparation_time,preparation,admin_id) VALUES (?,?,?,NOW(),NOW(),?,?,?);";
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?;";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE recipe SET name = ? , ingredients = ?, description = ?, updated =NOW(), preparation_time =?, preparation =?,admin_id =? WHERE	id = ?;";
-    private static final String SELECT_RECIPE_BY_ADMIN_ID = "SELECT  COUNT(*) from recipe WHERE  admin_id = 1"; //z aktualnie zalogowanego a nie z jedynki...
+    private static final String SELECT_RECIPE_BY_ADMIN_ID = "SELECT  COUNT(*) from recipe WHERE  admin_id = ?";
 
 
     /**
@@ -30,20 +30,20 @@ public class RecipeDao {
      */
 
 
-    public Recipe create(Recipe recipe) throws SQLException {
+    public Recipe create(Recipe recipe) {
 
         try (Connection connection = DbUtil.getConnection();
 
-               /* Connection connection = DbUtil2.connect("scrumlab");*/
+                /* Connection connection = DbUtil2.connect("scrumlab");*/
 
              PreparedStatement createRecipe = connection.prepareStatement(CREATE_RECIPE_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             createRecipe.setString(1, recipe.getName());
             createRecipe.setString(2, recipe.getIngredients());
             createRecipe.setString(3, recipe.getDescription());
-            createRecipe.setInt(4, recipe.getPreparationTime());
-            createRecipe.setString(5, recipe.getPreparation());
-            createRecipe.setInt(6, recipe.getAdminId());
+            createRecipe.setInt(6, recipe.getPreparationTime());
+            createRecipe.setString(7, recipe.getPreparation());
+            createRecipe.setInt(8, recipe.getAdminId());
             int result = createRecipe.executeUpdate();
             System.out.println("Recipe create complete");
             if (result != 1) {
@@ -106,7 +106,7 @@ public class RecipeDao {
 
         try (Connection connection = DbUtil.getConnection();
 
-               /* Connection connection = DbUtil2.connect("scrumlab");*/
+                /* Connection connection = DbUtil2.connect("scrumlab");*/
 
 
              PreparedStatement updateRecipe = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
@@ -157,9 +157,9 @@ public class RecipeDao {
     public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();
 
-        try( Connection connection = DbUtil.getConnection();
+        try (Connection connection = DbUtil.getConnection();
                 /*Connection connection = DbUtil2.connect("scrumlab");*/
-        PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+             PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
 
 
              ResultSet resultSet = findAll.executeQuery()) {
@@ -183,20 +183,19 @@ public class RecipeDao {
         return recipes;
     }
 
-    public int amountOfRecipes(int userId){
-        int result= 0;
 
-        try( Connection connection = DbUtil.getConnection();
-            /*    Connection connection = DbUtil2.connect("scrumlab");*/
-                PreparedStatement findCount = connection.prepareStatement(SELECT_RECIPE_BY_ADMIN_ID);
-            //sam wiesz co ;)
-                ResultSet resultSet = findCount.executeQuery()) {
 
-            while ((resultSet.next())){
-
-                result = resultSet.getInt(1);
+    public int amountOfRecipes(int adminId){
+        int result = 0;
+        try (Connection connection = DbUtil.getConnection()) {
+            PreparedStatement findCount = connection.prepareStatement(SELECT_RECIPE_BY_ADMIN_ID);
+            findCount.setInt(1, adminId);
+            try (ResultSet resultSet = findCount.executeQuery()) {
+                if (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;

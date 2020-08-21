@@ -1,21 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<html lang="en">
+<%--<link type="text/css" rel="stylesheet" id="dark-mode-general-link"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><style type="text/css" id="dark-mode-custom-style"></style>--%>
 
-
-
-
-
-<html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><style type="text/css" id="dark-mode-custom-style"></style><head>
-    <%@include file="WEB-INF/head.jspf" %>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Zaplanuj Jedzonko</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-</head>
+<%@include file="WEB-INF/head.jspf" %>
 
 <body>
 <%@include file="WEB-INF/dashboardHeader.jspf" %>
@@ -28,7 +17,7 @@
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
-                <form method =post>
+                <form action ="/app/recipe/add" method ="post">
                     <div class="mt-4 ml-4 mr-4">
                         <div class="row border-bottom border-3">
                             <div class="col"><h3 class="color-header text-uppercase">Nowy przepis</h3></div>
@@ -43,17 +32,17 @@
                                 <th scope="row" class="col-2">Nazwa Przepisu</th>
                                 <td class="col-7">
 
-                                    <input name="name" class="w-100 p-1" value=""> //nazwa przepisu
+                                    <input name="name" name ="name" id= "name" class="w-100 p-1" value="" required>
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Opis przepisu</th>
-                                <td class="col-7"><textarea class="w-100 p-1" rows="5"></textarea></td> //opis przepisu
+                                <td class="col-7"><textarea name ="description" id = "description" class="w-100 p-1" rows="5" required></textarea></td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Przygotowanie (minuty)</th>  //przygotowanie
+                                <th scope="row" class="col-2">Przygotowanie (minuty)</th>
                                 <td class="col-3">
-                                    <input class="p-1" type="number" value="">
+                                    <input class="p-1" name ="preparationTime" id = "preparationTime" type="number" value="" required>
                                 </td>
                             </tr>
                             </tbody>
@@ -67,12 +56,12 @@
                         </div>
                         <div class="row d-flex">
                             <div class="col-5 p-4">
-                                <textarea class="w-100 p-1" rows="10"></textarea>
+                                <textarea name = "preparation" id ="preparation" class="w-100 p-1" rows="10" required></textarea>
                             </div>
                             <div class="col-2"></div>
 
                             <div class="col-5 p-4">
-                                <textarea class="w-100 p-1" rows="10"></textarea>
+                                <textarea name ="ingredients" id ="ingredients" class="w-100 p-1" rows="10" required></textarea>
                             </div>
                         </div>
                     </div>
