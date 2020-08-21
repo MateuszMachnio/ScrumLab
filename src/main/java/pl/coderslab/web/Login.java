@@ -15,43 +15,36 @@ import java.io.IOException;
 @WebServlet(name = "Login", value = "/login")
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         AdminsDao adminsDao = new AdminsDao();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
         if (email.equals("") || password.equals("")) {
             response.sendRedirect("/noDataLogin.jsp");
             return;
         }
-        try {
-            Admins user = adminsDao.readByEmail(email);
-            boolean checkPass = BCrypt.checkpw(password, user.getPassword());
-            if (checkPass && user.getEnable() == 1) {
-                HttpSession oldSession = request.getSession();
-                try {
-                    if (oldSession.getAttribute("loggedUser").equals(user.getId())) {
-                        response.sendRedirect("/app");
-                    }
-                } catch (NullPointerException e) {
-                    oldSession.invalidate();
-                    HttpSession newSession = request.getSession(true);
-                    newSession.setMaxInactiveInterval(1200);
-                    newSession.setAttribute("loggedUser", user.getId());
-                    response.sendRedirect("/app");
-                }
-            } else if (checkPass && user.getEnable() != 1) {
-                response.sendRedirect("/notActiveUser.jsp");
-            } else {
-                request.setAttribute("email", email);
-                getServletContext().getRequestDispatcher("/wrongPassword.jsp").forward(request, response);
+
+        Admins user = adminsDao.readByEmail(email);
+        boolean checkPass = BCrypt.checkpw(password, user.getPassword());
+        if (checkPass && user.getEnable() == 1) {
+            HttpSession oldSession = request.getSession();
+            if (oldSession.getAttribute("loggedUser") == null || !oldSession.getAttribute("loggedUser").equals(user.getId())) {
+                oldSession.invalidate();
+                HttpSession newSession = request.getSession(true);
+                newSession.setMaxInactiveInterval(1200);
+                newSession.setAttribute("loggedUser", user.getId());
+                response.sendRedirect("/app");
             }
-        } catch (NullPointerException e) {
-            response.sendRedirect("/wrongLogin.jsp");
+        } else if (checkPass && user.getEnable() != 1) {
+            response.sendRedirect("/notActiveUser.jsp");
+        } else {
+            response.sendRedirect("/wrongData.jsp");
         }
     }
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
         HttpSession session = request.getSession();
         String msg = request.getParameter("msg");
         if (msg != null) {
