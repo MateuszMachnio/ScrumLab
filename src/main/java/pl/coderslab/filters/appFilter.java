@@ -1,3 +1,4 @@
+/*
 package pl.coderslab.filters;
 
 import pl.coderslab.dao.AdminsDao;
@@ -19,7 +20,7 @@ public class appFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession(false);
 
-        if(session ==null || session.getAttribute("loggedUser") ==null){
+        if( session.getAttribute("loggedUser") ==null){
 
             response.sendRedirect("/goToLogin.jsp");
             return;
@@ -34,3 +35,4 @@ public class appFilter implements Filter {
     }
 
 }
+*/

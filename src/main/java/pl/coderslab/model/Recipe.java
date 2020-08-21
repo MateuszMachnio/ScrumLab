@@ -1,12 +1,15 @@
 package pl.coderslab.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
-public class Recipe {
+public class Recipe   {
     private int ID,preparationTime,adminId;
     private String name, ingredients, description, created,updated, preparation;
 
-    public Recipe(String name, String ingredients, String description, String created,int preparationTime,String preparation,int adminId) {
+    public Recipe(String name, String ingredients, String description, String created,String updated, int preparationTime,String preparation,int adminId) {
         this.preparation = preparation;
         this.adminId = adminId;
         this.name = name;
@@ -14,8 +17,15 @@ public class Recipe {
         this.description = description;
         this.created = created;
         this.preparationTime = preparationTime;
+        this.updated = updated;
     }
 
+    public Recipe(int ID, String name, String description){
+        this.ID =ID;
+        this.name = name;
+        this.description = description;
+
+    }
     public Recipe(String name, String ingredients, String description,int preparationTime,String preparation,int adminId) {
         this.preparation = preparation;
         this.adminId = adminId;
@@ -115,4 +125,6 @@ public class Recipe {
                 ", preparation='" + preparation + '\'' +
                 '}';
     }
+
+
 }
