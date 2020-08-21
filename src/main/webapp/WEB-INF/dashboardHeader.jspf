@@ -1,3 +1,5 @@
+<%@ page import="pl.coderslab.dao.AdminsDao" %>
+<%@ page import="pl.coderslab.model.Admins" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header class="page-header">
@@ -6,7 +8,14 @@
             Zaplanuj <span>Jedzonko</span>
         </a>
         <div class="d-flex justify-content-around">
-            <h4 class="text-light mr-3">Imię</h4>
+            <h4 class="text-light mr-3"><%
+                HttpSession sessionName = request.getSession();
+                AdminsDao adminsDao = new AdminsDao();
+                Admins user = adminsDao.read((Integer) sessionName.getAttribute("loggedUser"));
+                String name = user.getFirstName();
+                request.setAttribute("name", name);
+            %>${name}</h4>
+
             <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
         </div>
     </nav>
