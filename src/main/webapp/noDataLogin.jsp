@@ -1,14 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: szymon
-  Date: 8/19/20
-  Time: 6:51 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%@include file="WEB-INF/head.jspf" %>
->
 <body>
 <%@include file="WEB-INF/header.jspf" %>
 >
@@ -20,7 +12,8 @@
                 <form class="padding-small text-center" action="<c:url value="/login"/>" method="post">
                     <h1 class="text-color-darker">Logowanie</h1>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="podaj adres email">
+                        <input type="email" class="form-control" id="email" name="email"
+                               placeholder="podaj adres email">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="password" name="password"

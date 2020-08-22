@@ -9,15 +9,14 @@
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="WEB-INF/sideBar.jspf"%>
-
+        <%@include file="WEB-INF/sideBar.jspf" %>
         <div class="m-4 p-4 width-medium">
             <div class="dashboard-header m-4">
                 <div class="dashboard-menu">
                     <div class="menu-item border-dashed">
                         <a href="<c:url value="/app/recipe/add"/>">
                             <i class="far fa-plus-square icon-plus-square"></i>
-                            <span class="title"  >dodaj przepis  </span>
+                            <span class="title">dodaj przepis  </span>
                         </a>
                     </div>
                     <div class="menu-item border-dashed">
@@ -64,7 +63,9 @@
                             <tr class="d-flex">
                                 <td class="col-2">${details.mealName}</td>
                                 <td class="col-8">${details.recipeName}</td>
-                                <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
+                                <td class="col-2">
+                                    <button type="button" class="btn btn-primary rounded-0">Szczegóły</button>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -74,7 +75,6 @@
         </div>
     </div>
 </section>
-
 <%@include file="WEB-INF/footer.jspf" %>
 </body>
 </html>

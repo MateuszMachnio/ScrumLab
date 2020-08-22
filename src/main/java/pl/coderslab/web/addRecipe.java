@@ -16,15 +16,10 @@ public class addRecipe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String name = request.getParameter("name");
-        System.out.println(name);
         String description = request.getParameter("description");
-        System.out.println(description);
         int preparationTime = Integer.parseInt(request.getParameter("preparationTime"));
-        System.out.println(preparationTime);
         String preparation = request.getParameter("preparation");
-        System.out.println(preparation);
         String ingredients = request.getParameter("ingredients");
-        System.out.println(ingredients);
         HttpSession session = request.getSession();
         int userId = (int) session.getAttribute("loggedUser");
         Recipe recipe = new Recipe(name,ingredients,description,preparationTime,preparation,userId);

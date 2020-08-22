@@ -1,17 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: szymon
-  Date: 8/21/20
-  Time: 4:02 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%@include file="WEB-INF/head.jspf" %>
->
 <body>
 <%@include file="WEB-INF/header.jspf" %>
->
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">

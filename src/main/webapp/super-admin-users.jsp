@@ -9,8 +9,7 @@
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="WEB-INF/sideBar.jspf"%>
-
+        <%@include file="WEB-INF/sideBar.jspf" %>
         <div class="m-4 p-3 width-medium">
             <div class="m-4 p-3 border-dashed view-height">
 
@@ -66,7 +65,6 @@
         </div>
     </div>
 </section>
-
 <%@include file="WEB-INF/footer.jspf" %>
 </body>
 </html>

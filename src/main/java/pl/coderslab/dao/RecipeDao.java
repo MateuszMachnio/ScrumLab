@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RecipeDao {
 
-    private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name,ingredients,description,created,preparation_time,preparation,admin_id) VALUES (?,?,?,NOW(),?,?,?);";
+    private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name,ingredients,description,created,preparation_time,preparation,admin_id) VALUES (?,?,?,NOW(),NOW(),?,?,?);";
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?;";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
@@ -30,20 +30,20 @@ public class RecipeDao {
      */
 
 
-    public Recipe create(Recipe recipe)  {
+    public Recipe create(Recipe recipe) {
 
         try (Connection connection = DbUtil.getConnection();
 
-               /* Connection connection = DbUtil2.connect("scrumlab");*/
+                /* Connection connection = DbUtil2.connect("scrumlab");*/
 
              PreparedStatement createRecipe = connection.prepareStatement(CREATE_RECIPE_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             createRecipe.setString(1, recipe.getName());
             createRecipe.setString(2, recipe.getIngredients());
             createRecipe.setString(3, recipe.getDescription());
-            createRecipe.setInt(4, recipe.getPreparationTime());
-            createRecipe.setString(5, recipe.getPreparation());
-            createRecipe.setInt(6, recipe.getAdminId());
+            createRecipe.setInt(6, recipe.getPreparationTime());
+            createRecipe.setString(7, recipe.getPreparation());
+            createRecipe.setInt(8, recipe.getAdminId());
             int result = createRecipe.executeUpdate();
             System.out.println("Recipe create complete");
             if (result != 1) {
@@ -106,7 +106,7 @@ public class RecipeDao {
 
         try (Connection connection = DbUtil.getConnection();
 
-               /* Connection connection = DbUtil2.connect("scrumlab");*/
+                /* Connection connection = DbUtil2.connect("scrumlab");*/
 
 
              PreparedStatement updateRecipe = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
@@ -157,9 +157,9 @@ public class RecipeDao {
     public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();
 
-        try( Connection connection = DbUtil.getConnection();
+        try (Connection connection = DbUtil.getConnection();
                 /*Connection connection = DbUtil2.connect("scrumlab");*/
-        PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
+             PreparedStatement findAll = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
 
 
              ResultSet resultSet = findAll.executeQuery()) {
@@ -182,6 +182,8 @@ public class RecipeDao {
         }
         return recipes;
     }
+
+
 
     public int amountOfRecipes(int adminId){
         int result = 0;

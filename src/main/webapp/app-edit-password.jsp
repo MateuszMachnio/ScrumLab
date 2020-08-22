@@ -9,8 +9,7 @@
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="WEB-INF/sideBar.jspf"%>
-
+        <%@include file="WEB-INF/sideBar.jspf" %>
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="m-4 border-dashed view-height">
                 <div class="mt-4 ml-4 mr-4">
@@ -31,13 +30,13 @@
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Nowe hasło</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" value="">
+                                    <input class="w-100 p-1" value="" type="password">
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Powtórz hasło</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" value="">
+                                    <input class="w-100 p-1" value="" type="password">
                                 </td>
                             </tr>
                             </tbody>
@@ -48,7 +47,6 @@
         </div>
     </div>
 </section>
-
 <%@include file="WEB-INF/footer.jspf" %>
 </body>
 </html>

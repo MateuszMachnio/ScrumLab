@@ -1,17 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: szymon
-  Date: 8/19/20
-  Time: 6:32 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%@include file="WEB-INF/head.jspf" %>
->
 <body>
 <%@include file="WEB-INF/header.jspf" %>
->
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">

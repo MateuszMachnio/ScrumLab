@@ -9,7 +9,7 @@
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="WEB-INF/sideBar.jspf"%>
+        <%@include file="WEB-INF/sideBar.jspf" %>
 
         <div class="m-4 p-3 width-medium">
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
@@ -18,7 +18,8 @@
                         <h3 class="color-header text-uppercase">LISTA PLANÓW</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <a href="app-add-schedules.html" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj plan</a>
+                        <a href="app-add-schedules.html" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj
+                            plan</a>
                     </div>
                 </div>
 
@@ -37,10 +38,18 @@
                             <td class="col-1">1</td>
                             <td class="col-2">Plan jarski na bezmięsny tydzień</td>
                             <td class="col-7">
-                                Pojęcie kuchnia wegetariańska określa pożywienie, które ani nie zawiera mięsa, ani nie zostało przygotowane na bazie pochodzącej z mięsa (np. na rosole drobiowym). Laktoowowegetarianie (najczęściej spotykany typ wegetarian w zachodnim świecie) spożywają nabiał, laktowegetarianie wykluczają jaja, ale nie inne produkty nabiałowe.
+                                Pojęcie kuchnia wegetariańska określa pożywienie, które ani nie zawiera mięsa, ani nie
+                                zostało
+                                przygotowane na bazie pochodzącej z mięsa (np. na rosole drobiowym).
+                                Laktoowowegetarianie
+                                (najczęściej spotykany typ wegetarian w zachodnim świecie) spożywają nabiał,
+                                laktowegetarianie
+                                wykluczają jaja, ale nie inne produkty nabiałowe.
                             </td>
-                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap"><a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                <a href="/app-details-schedules.html" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap"><a href="#"
+                                                                                                            class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                <a href="/app-details-schedules.html"
+                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                 <a href="/app-edit-schedules.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                             </td>
                         </tr>
@@ -48,10 +57,18 @@
                             <td class="col-1">2</td>
                             <td class="col-2">Plan jarski na bezmięsny tydzień</td>
                             <td class="col-7">
-                                Pojęcie kuchnia wegetariańska określa pożywienie, które ani nie zawiera mięsa, ani nie zostało przygotowane na bazie pochodzącej z mięsa (np. na rosole drobiowym). Laktoowowegetarianie (najczęściej spotykany typ wegetarian w zachodnim świecie) spożywają nabiał, laktowegetarianie wykluczają jaja, ale nie inne produkty nabiałowe.
+                                Pojęcie kuchnia wegetariańska określa pożywienie, które ani nie zawiera mięsa, ani nie
+                                zostało
+                                przygotowane na bazie pochodzącej z mięsa (np. na rosole drobiowym).
+                                Laktoowowegetarianie
+                                (najczęściej spotykany typ wegetarian w zachodnim świecie) spożywają nabiał,
+                                laktowegetarianie
+                                wykluczają jaja, ale nie inne produkty nabiałowe.
                             </td>
-                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap"><a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                <a href="/app-details-schedules.html" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap"><a href="#"
+                                                                                                            class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                <a href="/app-details-schedules.html"
+                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                 <a href="/app-edit-schedules.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                             </td>
                         </tr>
@@ -62,7 +79,6 @@
         </div>
     </div>
 </section>
-
 <%@include file="WEB-INF/footer.jspf" %>
 </body>
 </html>
