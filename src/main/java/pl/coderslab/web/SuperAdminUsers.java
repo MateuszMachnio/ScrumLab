@@ -14,6 +14,6 @@ public class SuperAdminUsers extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/super-admin-users.jsp");
+        response.sendRedirect("/appSuperAdminUsers.jsp");
     }
 }

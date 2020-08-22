@@ -14,6 +14,6 @@ public class AppEditPassword extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/app-edit-password.jsp");
+        response.sendRedirect("/appEditPassword.jsp");
     }
 }

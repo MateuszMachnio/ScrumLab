@@ -24,7 +24,7 @@ public class AppRecipes extends HttpServlet {
         List<Recipe> recipeList = recipeDao.findAll();
         recipeList.sort(Comparator.comparing(Recipe::getCreated).reversed());
         request.setAttribute("recipeList", recipeList);
-        getServletContext().getRequestDispatcher("/app-listRecipe.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/appRecipeList.jsp").forward(request, response);
 
 
     }

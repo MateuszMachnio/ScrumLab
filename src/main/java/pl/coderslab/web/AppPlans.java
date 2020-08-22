@@ -18,6 +18,6 @@ public class AppPlans extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PlanDao planDao = new PlanDao();
         request.setAttribute("plan", planDao.findAllByDate());
-        getServletContext().getRequestDispatcher("/listPlan.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/appPlanList.jsp").forward(request,response);
     }
 }

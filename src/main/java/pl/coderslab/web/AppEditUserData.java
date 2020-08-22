@@ -14,6 +14,6 @@ public class AppEditUserData extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/app-edit-user-data.jsp");
+        response.sendRedirect("/appEditUserData.jsp");
     }
 }
