@@ -33,13 +33,18 @@ public class PlanDao  {
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
     private static final String AMOUNT_PLANS_BY_ADMIN_ID = "SELECT  COUNT(*) from plan WHERE  admin_id = ?";
     private  static  final String SELECT_ALL_PLANS_SORTED ="SELECT * FROM plan ORDER BY created DESC;";
-    private static final String RECENT_PLAN_BY_ADMIN_ID = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
+    private static final String DETAILS_OF_RECENT_PLAN_BY_ADMIN_ID = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
             "FROM `recipe_plan`\n" +
             "         JOIN day_name on day_name.id=day_name_id\n" +
             "         JOIN recipe on recipe.id=recipe_id WHERE\n" +
             "        recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
             "ORDER by day_name.display_order, recipe_plan.display_order;";
     private static final String NAME_OF_RECENT_PLAN = "SELECT name FROM plan WHERE plan.id = (SELECT MAX(id) from plan WHERE admin_id = ?);";
+    private static final String DETAILS_OF_PLAN_BY_PLAN_ID = "SELECT day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
+            "FROM `recipe_plan`\n" +
+            "JOIN day_name on day_name.id=day_name_id\n" +
+            "JOIN recipe on recipe.id=recipe_id WHERE plan_id = ?\n" +
+            "ORDER by day_name.display_order, recipe_plan.display_order;";
 
 
     //Get plan by id
@@ -184,7 +189,7 @@ public class PlanDao  {
         Map<String, List<PlanDetails>> planDetailsMap = new HashMap();
         List<PlanDetails> planDetailsList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(RECENT_PLAN_BY_ADMIN_ID)) {
+             PreparedStatement statement = connection.prepareStatement(DETAILS_OF_RECENT_PLAN_BY_ADMIN_ID)) {
             statement.setInt(1, adminId);
             ResultSet resultSet = statement.executeQuery();
             String valueOfdayName = "";
@@ -202,13 +207,11 @@ public class PlanDao  {
                 planDetailsList.add(planToAdd);
                 planDetailsMap.put(tmp, planDetailsList);
                 valueOfdayName = tmp;
-
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-
         return planDetailsMap;
     }
 
@@ -226,6 +229,36 @@ public class PlanDao  {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public Map<String, List<PlanDetails>> detailsOfPlan(int planId) {
+        Map<String, List<PlanDetails>> planDetailsMap = new HashMap();
+        List<PlanDetails> planDetailsList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(DETAILS_OF_PLAN_BY_PLAN_ID)) {
+            statement.setInt(1, planId);
+            ResultSet resultSet = statement.executeQuery();
+            String valueOfdayName = "";
+            while (resultSet.next()) {
+                String tmp = resultSet.getString("day_name");
+                if (!valueOfdayName.equals(tmp)) {
+                    planDetailsList = new ArrayList<>();
+                }
+                PlanDetails planToAdd = new PlanDetails();
+//                planToAdd.setDayName(resultSet.getString("day_name"));
+                planToAdd.setMealName(resultSet.getString("meal_name"));
+                planToAdd.setRecipeName(resultSet.getString("recipe_name"));
+                planToAdd.setRecipeDescription(resultSet.getString("recipe_description"));
+                planToAdd.setId(resultSet.getInt("recipe_id"));
+                planDetailsList.add(planToAdd);
+                planDetailsMap.put(tmp, planDetailsList);
+                valueOfdayName = tmp;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return planDetailsMap;
     }
 
 }

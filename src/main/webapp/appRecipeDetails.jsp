@@ -16,7 +16,13 @@
                 <div class="mt-4 ml-4 mr-4">
                     <div class="row border-bottom border-3">
                         <div class="col"><h3 class="color-header text-uppercase">Szczegóły przepisu</h3></div>
-                        <div class="col d-flex justify-content-end mb-2"><a href="<c:if test="${dash != null}"><c:url value="/app"/></c:if><c:if test="${dash == null}"><c:url value="/app/recipe/list"/></c:if>" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
+                        <div class="col d-flex justify-content-end mb-2">
+                            <%
+                                HttpSession session1 = request.getSession();
+                                int planId = (int) session1.getAttribute("planId");
+                                request.setAttribute("id", planId);
+                            %>
+                            <a href="<c:if test="${dash != null}"><c:url value="/app"/></c:if><c:if test="${recipes != null}"><c:url value="/app/recipe/list"/></c:if><c:if test="${plan != null}"><c:url value="/app/plan/details?id=${id}"/></c:if>" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
                     </div>
 
                     <table class="table borderless">
