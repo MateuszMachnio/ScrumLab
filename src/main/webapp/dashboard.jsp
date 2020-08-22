@@ -6,7 +6,7 @@
 <%@include file="WEB-INF/dashboardHeader.jspf" %>
 <%@include file="WEB-INF/sideBar.jspf" %>
 
-<            <div class="m-4 p-4 width-medium">
+<div class="m-4 p-4 width-medium">
     <div class="dashboard-header m-4">
         <div class="dashboard-menu">
             <div class="menu-item border-dashed">
