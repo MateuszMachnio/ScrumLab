@@ -21,6 +21,6 @@ public class RecipeDetails extends HttpServlet {
         RecipeDao recipeDao = new RecipeDao();
         Recipe recipe = recipeDao.read(id);
         request.setAttribute("recipe", recipe);
-        getServletContext().getRequestDispatcher("/recipeDetails.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/appRecipeDetails.jsp").forward(request,response);
     }
 }
