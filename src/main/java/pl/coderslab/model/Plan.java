@@ -21,6 +21,12 @@ public class Plan implements Comparable<Plan>  {
         this.adminId = adminId;
     }
 
+    public Plan(String name, String description, int adminId) {
+        this.name = name;
+        this.description = description;
+        this.adminId = adminId;
+    }
+
     public int getId() {
         return id;
     }
