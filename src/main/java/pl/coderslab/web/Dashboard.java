@@ -30,6 +30,6 @@ public class Dashboard extends HttpServlet {
         request.setAttribute("numberOfPlans", planDao.amountOfPlans(loggedUser));
         request.setAttribute("nameOfRecentPlan", planDao.getNameOfRecentPlan(loggedUser));
         request.setAttribute("planDetails", stringListMap);
-        getServletContext().getRequestDispatcher("/dashboard.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/appDashboard.jsp").forward(request, response);
     }
 }
