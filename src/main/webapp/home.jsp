@@ -1,12 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
-
 <%@include file="/WEB-INF/head.jspf" %>
-
 <body>
 <%@include file="/WEB-INF/header.jspf" %>
-
 
 <section class="padding-large bg-light">
     <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
@@ -59,7 +56,7 @@
         </div>
         <div class="ml-4 align-self-center">
             <button class="btn btn-color rounded-0 mt-4 pl-4 pr-4">
-                <a href="index.html">Lorem ipsum</a>
+                <a href="/app">Lorem ipsum</a>
             </button>
         </div>
     </div>
@@ -106,7 +103,7 @@
                            aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="input-group-text btn-color border-0 rounded-0" type="submit" id="basic-addon2">
-                            <a href="index.html">Lorem</a>
+                            <a href="/app">Lorem</a>
                         </button>
                     </div>
                 </div>
