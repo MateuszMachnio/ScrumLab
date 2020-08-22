@@ -16,7 +16,7 @@
                 <div class="mt-4 ml-4 mr-4">
                     <div class="row border-bottom border-3">
                         <div class="col"><h3 class="color-header text-uppercase">Szczegóły przepisu</h3></div>
-                        <div class="col d-flex justify-content-end mb-2"><a href="<c:url value="/app/recipe/list"/>" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
+                        <div class="col d-flex justify-content-end mb-2"><a href="<c:if test="${dash != null}"><c:url value="/app"/></c:if><c:if test="${dash == null}"><c:url value="/app/recipe/list"/></c:if>" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
                     </div>
 
                     <table class="table borderless">
@@ -51,15 +51,9 @@
                         </div>
                         <div class="col-2"></div>
                         <ul class="col-5 p-4 list-unstyled">
-                            <li>brukselka 300g</li>
-                            <li>ziemniaki 500g</li>
-                            <li>Fix Naturalnie makaronowa z szynką Knorr 1 szt.</li>
-                            <li>średnia cebula 1szt.</li>
-                            <li>ząbek czosnku 1szt.</li>
-                            <li>kiełbasa np. śląska 500g</li>
-                            <li>śmietana 18% 200 ml</li>
-                            <li>Rama Smaż jak szef kuchni, wariant klasyczny 4 łyżki</li>
-                            <li>gałązka tymianku 1 szt.</li>
+                            <c:forEach items="${splitIngredients}" var="ingredient">
+                                <li>${ingredient}</li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
