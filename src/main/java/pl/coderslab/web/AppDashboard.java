@@ -33,3 +33,4 @@ public class AppDashboard extends HttpServlet {
         getServletContext().getRequestDispatcher("/appDashboard.jsp").forward(request, response);
     }
 }
+
