@@ -1,5 +1,7 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.PlanDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,8 @@ public class AppPlans extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/app-plans.jsp");
+        PlanDao planDao = new PlanDao();
+        request.setAttribute("plan", planDao.findAllByDate());
+        getServletContext().getRequestDispatcher("/listPlan.jsp").forward(request,response);
     }
 }
