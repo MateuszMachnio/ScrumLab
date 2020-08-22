@@ -19,8 +19,16 @@ public class AppRecipeDetails extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String from = request.getParameter("from");
-        if (from.equals("dash")) {
-            request.setAttribute("dash", "something");
+        switch (from) {
+            case "dash":
+                request.setAttribute("dash", "something");
+                break;
+            case "plan":
+                request.setAttribute("plan", "alsoSomething");
+                break;
+            case "recipes":
+                request.setAttribute("recipes", "somethingElse");
+                break;
         }
         RecipeDao recipeDao = new RecipeDao();
         Recipe recipe = recipeDao.read(id);
