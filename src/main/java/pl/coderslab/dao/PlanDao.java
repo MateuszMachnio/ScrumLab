@@ -33,7 +33,7 @@ public class PlanDao  {
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
     private static final String AMOUNT_PLANS_BY_ADMIN_ID = "SELECT  COUNT(*) from plan WHERE  admin_id = ?";
     private  static  final String SELECT_ALL_PLANS_SORTED ="SELECT * FROM plan ORDER BY created DESC;";
-    private static final String RECENT_PLAN_BY_ADMIN_ID = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description\n" +
+    private static final String RECENT_PLAN_BY_ADMIN_ID = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
             "FROM `recipe_plan`\n" +
             "         JOIN day_name on day_name.id=day_name_id\n" +
             "         JOIN recipe on recipe.id=recipe_id WHERE\n" +
@@ -198,6 +198,7 @@ public class PlanDao  {
                 planToAdd.setMealName(resultSet.getString("meal_name"));
                 planToAdd.setRecipeName(resultSet.getString("recipe_name"));
                 planToAdd.setRecipeDescription(resultSet.getString("recipe_description"));
+                planToAdd.setId(resultSet.getInt("recipe_id"));
                 planDetailsList.add(planToAdd);
                 planDetailsMap.put(tmp, planDetailsList);
                 valueOfdayName = tmp;

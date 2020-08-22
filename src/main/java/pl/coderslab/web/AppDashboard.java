@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "Dashboard", value = "/app")
-public class Dashboard extends HttpServlet {
+public class AppDashboard extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

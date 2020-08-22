@@ -1,6 +1,7 @@
 package pl.coderslab.model;
 
 public class PlanDetails {
+    private int id;
     private String dayName;
     private String mealName;
     private String recipeName;
@@ -23,6 +24,14 @@ public class PlanDetails {
 
     public void setDayName(String dayName) {
         this.dayName = dayName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMealName() {
