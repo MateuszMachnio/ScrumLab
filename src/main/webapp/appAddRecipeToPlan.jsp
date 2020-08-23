@@ -21,6 +21,8 @@
                         <a href="/app/plan/list" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</a>
                     </div>
                 </div>
+                //        Formularz musi posiadać przycisk Wyślij, po naciśnięciu którego plan ma zostać wysłany metodą POST na stronę /app/recipe/plan/add.
+                //        Po wejściu na stronę /app/recipe/plan/add metodą GET, powinien pojawić się formularz z polami - zgodnie z przygotowaną makietą.
 
                 <div class="schedules-content">
                     <form action="app/recipe/plan/add" method="post">
@@ -30,11 +32,9 @@
                             </label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="choosePlan">
-                                    <option>Mój pierwszy plan</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <c:forEach items="${planList}" var="plan">
+                                    <option value="${plan.name}">${plan.name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                                 Numer posiłku
                             </label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" value="" id="number"
-                                       placeholder="Numer posiłki">
+                                <input type="number" class="form-control" value="" id="number"
+                                       placeholder="Numer posiłku">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -60,12 +60,10 @@
                                 Przepis
                             </label>
                             <div class="col-sm-4">
-                                <select class="form-control" id="recipie">
-                                    <option>Zapiekanka z ziemniakami i brukselką</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" id="recipie" name="recipe">
+                                    <c:forEach items="${recipeList}" var="recipe">
+                                    <option value="${recipe.name}">${recipe.name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -74,12 +72,10 @@
                                 Dzień
                             </label>
                             <div class="col-sm-2">
-                                <select class="form-control" id="day">
-                                    <option>poniedziałek</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" id="day" name="day">
+                                    <c:forEach var="day" items="${dayList}">
+                                        <option value="${day.name}">${day.name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
