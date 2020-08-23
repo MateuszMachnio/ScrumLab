@@ -31,7 +31,7 @@
                             <div class="col-sm-3">
                                 <select name="choosePlan" class="form-control" id="choosePlan" required autofocus>
                                     <c:forEach items="${planList}" var="plan">
-                                        <option>${plan.name}</option>
+                                        <option value="${plan.id}">${plan.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                             <div class="col-sm-4">
                                 <select class="form-control" id="recipie" name="recipe" required autofocus>
                                     <c:forEach items="${recipeList}" var="recipe">
-                                        <option>${recipe.name}</option>
+                                        <option value="${recipe.ID}">${recipe.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -72,7 +72,7 @@
                             <div class="col-sm-2">
                                 <select class="form-control" id="day" name="day" required autofocus>
                                     <c:forEach var="day" items="${dayList}">
-                                        <option>${day.name}</option>
+                                        <option value="${day.id}">${day.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>

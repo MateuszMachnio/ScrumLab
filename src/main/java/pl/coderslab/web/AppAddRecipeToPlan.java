@@ -25,6 +25,7 @@ public class AppAddRecipeToPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        Po wejściu metodą POST na adres  /app/recipe/plan/add , aplikacja powinna:
 //        - pobrać dane, a nastepnie zapisać je przy pomocy klasy Dao do bazy,
+
 //        - przekierować użytkownika na adres  /app/recipe/plan/add, umożliwiając tym samym dodanie kolejnego przepisu do planu.
     }
 
