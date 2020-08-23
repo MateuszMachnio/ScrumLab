@@ -21,6 +21,7 @@ public class recpieDelete extends HttpServlet {
         String id  = (String)ses.getAttribute("recipeId");
         RecipeDao recipeDao = new RecipeDao();
         recipeDao.delete(Integer.parseInt(id));
+        ses.removeAttribute("recipeId");
         response.sendRedirect("/app/recipe/list");
     }
 }

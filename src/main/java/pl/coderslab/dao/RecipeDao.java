@@ -104,7 +104,7 @@ public class RecipeDao {
 
         try (Connection connection = DbUtil.getConnection();
 
-                /* Connection connection = DbUtil2.connect("scrumlab");*/
+
 
 
              PreparedStatement updateRecipe = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
