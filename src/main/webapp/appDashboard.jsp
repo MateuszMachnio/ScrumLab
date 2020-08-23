@@ -26,7 +26,7 @@
                         </a>
                     </div>
                     <div class="menu-item border-dashed">
-                        <a href="/appAddRecipeToPlan.jsp">
+                        <a href="/app/recipe/plan/add">
                             <i class="far fa-plus-square icon-plus-square"></i>
                             <span class="title">dodaj przepis do planu</span>
                         </a>
@@ -64,7 +64,9 @@
                                 <td class="col-2">${details.mealName}</td>
                                 <td class="col-8">${details.recipeName}</td>
                                 <td class="col-2">
-                                    <a href="/app/recipe/details?from=dash&id=${details.id}"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a>
+                                    <a href="/app/recipe/details?from=dash&id=${details.id}">
+                                        <button type="button" class="btn btn-primary rounded-0">Szczegóły</button>
+                                    </a>
                                 </td>
                             </tr>
                         </c:forEach>
