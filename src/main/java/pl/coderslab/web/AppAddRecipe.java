@@ -25,7 +25,7 @@ public class AppAddRecipe extends HttpServlet {
         Recipe recipe = new Recipe(name,ingredients,description,preparationTime,preparation,userId);
         RecipeDao recipeDao = new RecipeDao();
         recipeDao.create(recipe);
-        response.sendRedirect("/app/recipe/list"); // przekierować na odpowiedni servlet
+        response.sendRedirect("/app/recipe/list");
 
     }
 
