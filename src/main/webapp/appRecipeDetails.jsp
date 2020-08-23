@@ -19,8 +19,11 @@
                         <div class="col d-flex justify-content-end mb-2">
                             <%
                                 HttpSession session1 = request.getSession();
-                                int planId = (int) session1.getAttribute("planId");
-                                request.setAttribute("id", planId);
+                                Object planId = session1.getAttribute("planId");
+                                if (planId == null) {
+                                    planId = 0;                               }
+                                int planIdInt = (int) planId;
+                                request.setAttribute("id", planIdInt);
                             %>
                             <a href="<c:if test="${dash != null}"><c:url value="/app"/></c:if><c:if test="${recipes != null}"><c:url value="/app/recipe/list"/></c:if><c:if test="${plan != null}"><c:url value="/app/plan/details?id=${id}"/></c:if>" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
                     </div>
