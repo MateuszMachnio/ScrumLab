@@ -22,32 +22,32 @@ public class AppDeleteRecipeFromPlan extends HttpServlet {
         String DELETE_RECIPE_FROM_PLAN = "DELETE FROM recipe_plan WHERE plan_id=? AND recipe_id=?;";
 
         HttpSession session = request.getSession();
-        Plan planId = (Plan) session.getAttribute("planId");
-        int recipeId =Integer.parseInt(request.getParameter("id"));
+        Plan plan = (Plan) session.getAttribute("plan");
+        Recipe recipe=(Recipe) session.getAttribute("recipe");
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement deleteRecipeFromPlan = connection.prepareStatement(DELETE_RECIPE_FROM_PLAN)) {
-            deleteRecipeFromPlan.setInt(1, planId.getId());
-            deleteRecipeFromPlan.setInt(2, recipeId);
+            deleteRecipeFromPlan.setInt(1, plan.getId());
+            deleteRecipeFromPlan.setInt(2, recipe.getID());
             deleteRecipeFromPlan.executeUpdate();
             System.out.println("Recipe was deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/app/plan/details?id=" + (planId.getId()));
+        response.sendRedirect("/app/plan/details?id=" + (plan.getId()));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recipeId = request.getParameter("id");
+        String recipeId = request.getParameter("ID");
         HttpSession session = request.getSession();
         int planId = (Integer) (session.getAttribute("planId"));
-        session.setAttribute("planId", planId);
-        session.setAttribute("recipeId", recipeId);
         PlanDao planDao = new PlanDao();
         Plan plan = planDao.read(planId);
         RecipeDao recipeDao = new RecipeDao();
         Recipe recipe = recipeDao.read(Integer.parseInt(recipeId));
         request.setAttribute("plan", plan);
         request.setAttribute("recipe", recipe);
+        session.setAttribute("plan", plan);
+        session.setAttribute("recipe", recipe);
 
         getServletContext().getRequestDispatcher("/appDeleteRecipeFromPlan.jsp").forward(request, response);
     }
