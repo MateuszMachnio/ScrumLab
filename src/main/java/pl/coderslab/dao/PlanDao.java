@@ -16,14 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import java.util.Date;
-
-import java.util.HashMap;
-
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PlanDao {
     // SQL QUERY
@@ -43,8 +36,8 @@ public class PlanDao {
     private static final String NAME_OF_RECENT_PLAN = "SELECT name FROM plan WHERE plan.id = (SELECT MAX(id) from plan WHERE admin_id = ?);";
     private static final String DETAILS_OF_PLAN_BY_PLAN_ID = "SELECT day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
             "FROM `recipe_plan`\n" +
-            "JOIN day_name on day_name.id=day_name_id\n" +
-            "JOIN recipe on recipe.id=recipe_id WHERE plan_id = ?\n" +
+            "         JOIN day_name on day_name.id=day_name_id\n" +
+            "         JOIN recipe on recipe.id=recipe_id WHERE plan_id = ? -- zamiast 6 należy wstawić id planu do pobrania --\n" +
             "ORDER by day_name.display_order, recipe_plan.display_order;";
 
 
@@ -187,8 +180,8 @@ public class PlanDao {
         return planList;
     }
 
-    public Map<String, List<PlanDetails>> detailsOfRecentPlan(int adminId) {
-        Map<String, List<PlanDetails>> planDetailsMap = new HashMap();
+    public HashMap<String, List<PlanDetails>> detailsOfRecentPlan(int adminId) {
+        HashMap<String, List<PlanDetails>> planDetailsMap = new HashMap<>();
         List<PlanDetails> planDetailsList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DETAILS_OF_RECENT_PLAN_BY_ADMIN_ID)) {
@@ -233,7 +226,7 @@ public class PlanDao {
     }
 
     public Map<String, List<PlanDetails>> detailsOfPlan(int planId) {
-        Map<String, List<PlanDetails>> planDetailsMap = new HashMap();
+        Map<String, List<PlanDetails>> planDetailsMap = new LinkedHashMap<>();
         List<PlanDetails> planDetailsList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DETAILS_OF_PLAN_BY_PLAN_ID)) {
