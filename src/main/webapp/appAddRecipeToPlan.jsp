@@ -41,7 +41,7 @@
                                 Nazwa posiłku
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="" name="name" id="name" placeholder="Nazwa posiłku">
+                                <input type="text" class="form-control" value="" name="name" id="name" required placeholder="Nazwa posiłku">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -50,7 +50,7 @@
                             </label>
                             <div class="col-sm-2">
                                 <input type="number" min="1" max="5" class="form-control" value="" name="displayOrder" id="displayOrder"
-                                       placeholder="Numer posiłku">
+                                       placeholder="Numer posiłku" required>
                             </div>
                         </div>
                         <div class="form-group row">

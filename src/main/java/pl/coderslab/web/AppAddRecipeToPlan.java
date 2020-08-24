@@ -46,7 +46,7 @@ public class AppAddRecipeToPlan extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/app/recipe/plan/add");
+        response.sendRedirect("/appAddNextRecipeToPlan.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
