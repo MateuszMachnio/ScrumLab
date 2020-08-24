@@ -15,7 +15,12 @@ public class AppDeleteRecipe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int recipeId = Integer.parseInt(request.getParameter("recipeId"));
         RecipeDao recipeDao = new RecipeDao();
-        recipeDao.delete(recipeId);
+        boolean delete = recipeDao.delete(recipeId);
+        if (delete) {
+            request.setAttribute("delete", 0);
+            getServletContext().getRequestDispatcher("/recipeSafeDelete.jsp").forward(request,response);
+            return;
+        }
         response.sendRedirect("/app/recipe/list");
     }
 

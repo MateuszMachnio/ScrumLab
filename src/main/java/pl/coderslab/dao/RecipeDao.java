@@ -129,22 +129,20 @@ public class RecipeDao {
      * @param recipeId
      */
 
-    public void delete(int recipeId) {
+    public boolean delete(int recipeId) {
         try (Connection connection = DbUtil.getConnection();
                 /*Connection connection = DbUtil2.connect("scrumlab");*/
              PreparedStatement deleteRecipe = connection.prepareStatement(DELETE_RECIPE_QUERY)) {
             deleteRecipe.setInt(1, recipeId);
             deleteRecipe.executeUpdate();
-
-
             /*     boolean deleted = deleteRecipe.execute();*/
             if (!deleteRecipe.execute()) {
-                throw new NotFoundException("Recipe not found");
+                return false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
 
 
