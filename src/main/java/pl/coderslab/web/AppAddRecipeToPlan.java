@@ -26,6 +26,7 @@ import java.util.List;
 @WebServlet(name = "AppAddRecipeToPlan", value = "/app/recipe/plan/add")
 public class AppAddRecipeToPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;UTF-8");
         String ADD_RECIPE_TO_PLAN_QUERY = "INSERT INTO recipe_plan (recipe_id, meal_name, display_order, day_name_id, plan_id) VALUES (?,?,?,?,?);";
         int planId = Integer.parseInt(request.getParameter("choosePlan"));
@@ -46,7 +47,7 @@ public class AppAddRecipeToPlan extends HttpServlet {
             e.printStackTrace();
         }
         response.sendRedirect("/app/recipe/plan/add");
-  }
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
