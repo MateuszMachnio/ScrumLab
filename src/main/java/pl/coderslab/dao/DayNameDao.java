@@ -18,7 +18,6 @@ public class DayNameDao {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_DAY_NAME_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
-
             while (resultSet.next()) {
                 DayName dayName = new DayName();
                 dayName.setId(resultSet.getInt("id"));
@@ -26,11 +25,10 @@ public class DayNameDao {
                 dayName.setDisplayOrder(resultSet.getInt("display_order"));
                 dayNameList.add(dayName);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return dayNameList;
-
     }
+
 }
