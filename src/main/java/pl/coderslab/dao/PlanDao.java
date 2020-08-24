@@ -9,6 +9,7 @@ import pl.coderslab.model.PlanDetails;
 
 import pl.coderslab.utils.DbUtil;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlanDao  {
+public class PlanDao {
     // SQL QUERY
     private static final String CREATE_PLAN_QUERY = "INSERT INTO plan(name,description,created,admin_id) VALUES (?,?,NOW(),?);";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?;";
@@ -32,7 +33,7 @@ public class PlanDao  {
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
     private static final String AMOUNT_PLANS_BY_ADMIN_ID = "SELECT  COUNT(*) from plan WHERE  admin_id = ?";
-    private  static  final String SELECT_ALL_PLANS_SORTED ="SELECT * FROM plan ORDER BY created DESC;";
+    private static final String SELECT_ALL_PLANS_SORTED = "SELECT * FROM plan WHERE admin_id=? ORDER BY created DESC ;";
     private static final String DETAILS_OF_RECENT_PLAN_BY_ADMIN_ID = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
             "FROM `recipe_plan`\n" +
             "         JOIN day_name on day_name.id=day_name_id\n" +
@@ -146,7 +147,7 @@ public class PlanDao  {
         }
     }
 
-    public int amountOfPlans(int adminId){
+    public int amountOfPlans(int adminId) {
         int result = 0;
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement findCount = connection.prepareStatement(AMOUNT_PLANS_BY_ADMIN_ID);
@@ -163,12 +164,13 @@ public class PlanDao  {
     }
 
 
-
-    public List<Plan> findAllByDate() {
+    public List<Plan> findAllByDate(int id) {
         List<Plan> planList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PLANS_SORTED);
-             ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PLANS_SORTED)) {
+
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Plan planToAdd = new Plan();
                 planToAdd.setId(resultSet.getInt("id"));
@@ -178,12 +180,12 @@ public class PlanDao  {
                 planToAdd.setAdminId(resultSet.getInt("admin_id"));
                 planList.add(planToAdd);
             }
-        }catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            return planList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return planList;
+    }
 
     public Map<String, List<PlanDetails>> detailsOfRecentPlan(int adminId) {
         Map<String, List<PlanDetails>> planDetailsMap = new HashMap();
@@ -208,14 +210,13 @@ public class PlanDao  {
                 planDetailsMap.put(tmp, planDetailsList);
                 valueOfdayName = tmp;
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return planDetailsMap;
     }
 
-    public String getNameOfRecentPlan(int adminId){
+    public String getNameOfRecentPlan(int adminId) {
         String result = "";
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement findCount = connection.prepareStatement(NAME_OF_RECENT_PLAN);
@@ -254,8 +255,7 @@ public class PlanDao  {
                 planDetailsMap.put(tmp, planDetailsList);
                 valueOfdayName = tmp;
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return planDetailsMap;
