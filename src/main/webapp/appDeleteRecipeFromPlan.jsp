@@ -23,9 +23,8 @@
                             <button type="submit" formaction="/app/plan/delete/recipe" formmethod="post"
                                     class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">OK
                             </button>
-                            <button type="button" href="/app/plan/delete/recipe"
-                                    class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
-                            </button>
+                            <a href="/app/plan/list" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
+                            </a>
                         </div>
                     </form>
                 </div>
