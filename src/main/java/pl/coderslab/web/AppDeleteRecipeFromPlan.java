@@ -23,7 +23,8 @@ public class AppDeleteRecipeFromPlan extends HttpServlet {
 
         HttpSession session = request.getSession();
         Plan plan = (Plan) session.getAttribute("plan");
-        Recipe recipe=(Recipe) session.getAttribute("recipe");
+        Recipe recipe = (Recipe) session.getAttribute("recipe");
+
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement deleteRecipeFromPlan = connection.prepareStatement(DELETE_RECIPE_FROM_PLAN)) {
             deleteRecipeFromPlan.setInt(1, plan.getId());
@@ -37,13 +38,13 @@ public class AppDeleteRecipeFromPlan extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recipeId = request.getParameter("ID");
+        int recipeId = Integer.parseInt(request.getParameter("ID"));
         HttpSession session = request.getSession();
         int planId = (Integer) (session.getAttribute("planId"));
         PlanDao planDao = new PlanDao();
         Plan plan = planDao.read(planId);
         RecipeDao recipeDao = new RecipeDao();
-        Recipe recipe = recipeDao.read(Integer.parseInt(recipeId));
+        Recipe recipe = recipeDao.read(recipeId);
         request.setAttribute("plan", plan);
         request.setAttribute("recipe", recipe);
         session.setAttribute("plan", plan);
