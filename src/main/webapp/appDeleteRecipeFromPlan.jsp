@@ -16,12 +16,12 @@
                     <form>
 
                         <div class="row border-bottom border-3">
-                            <div align="center" class="col"><h3 class="color-header text-uppercase">Czy chcesz usunąć
-                                przepis z planu</h3></div>
+                            <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
+                                przepis z planu?</h3></div>
                         </div>
                         <div class="center" style="position:relative; top:70px">
                             <button type="submit" formaction="/app/plan/delete/recipe" formmethod="post"
-                                    class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">OK
+                                    class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń
                             </button>
                             <a href="/app/plan/list" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
                             </a>
