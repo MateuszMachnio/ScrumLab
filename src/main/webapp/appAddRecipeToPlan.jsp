@@ -13,18 +13,17 @@
 
         <div class="m-4 p-3 width-medium">
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
-                <form name="recipeToPlan" id="recipeToPlan" action="<c:url value="/app/recipe/plan/add"/>" method="post">
-
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding">
                         <h3 class="color-header text-uppercase">DODAJ PRZEPIS DO PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <button form="recipeToPlan" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
+                        <button type="submit" form="recipeToPlan" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
                     </div>
                 </div>
 
                 <div class="schedules-content">
+                    <form name="recipeToPlan" id="recipeToPlan" action="<c:url value="/app/recipe/plan/add"/>" method="post">
                         <div class="form-group row">
                             <label for="choosePlan" class="col-sm-2 label-size col-form-label">
                                 Wybierz plan
@@ -78,9 +77,8 @@
                                 </select>
                             </div>
                         </div>
-
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
