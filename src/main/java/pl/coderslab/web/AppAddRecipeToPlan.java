@@ -8,6 +8,7 @@ import pl.coderslab.model.Admins;
 import pl.coderslab.model.DayName;
 import pl.coderslab.model.Plan;
 import pl.coderslab.model.Recipe;
+import pl.coderslab.utils.DbUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -23,11 +26,27 @@ import java.util.List;
 @WebServlet(name = "AppAddRecipeToPlan", value = "/app/recipe/plan/add")
 public class AppAddRecipeToPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        Po wejściu metodą POST na adres  /app/recipe/plan/add , aplikacja powinna:
-//        - pobrać dane, a nastepnie zapisać je przy pomocy klasy Dao do bazy,
-
-//        - przekierować użytkownika na adres  /app/recipe/plan/add, umożliwiając tym samym dodanie kolejnego przepisu do planu.
-    }
+        response.setContentType("text/html;UTF-8");
+        String ADD_RECIPE_TO_PLAN_QUERY = "INSERT INTO recipe_plan (recipe_id, meal_name, display_order, day_name_id, plan_id) VALUES (?,?,?,?,?);";
+        int planId = Integer.parseInt(request.getParameter("choosePlan"));
+        String name = request.getParameter("name");
+        int displayOrder = Integer.parseInt(request.getParameter("displayOrder"));
+        int recipeID = Integer.parseInt(request.getParameter("recipe"));
+        int dayId = Integer.parseInt(request.getParameter("day"));
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement addRecipeToPlan = connection.prepareStatement(ADD_RECIPE_TO_PLAN_QUERY)) {
+            addRecipeToPlan.setInt(1, recipeID);
+            addRecipeToPlan.setString(2, name);
+            addRecipeToPlan.setInt(3, displayOrder);
+            addRecipeToPlan.setInt(4, dayId);
+            addRecipeToPlan.setInt(5, planId);
+            addRecipeToPlan.executeUpdate();
+            System.out.println("Recipe was added to plan");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect("/app/recipe/plan/add");
+  }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -49,6 +68,7 @@ public class AppAddRecipeToPlan extends HttpServlet {
         }
         recipeList.sort(Comparator.comparing(Recipe::getCreated).reversed());
         request.setAttribute("recipeList", recipeList);
+
 
         //wysyłamy posortowana liste planów użytkownika
         List<Plan> plans = planDao.findAll();

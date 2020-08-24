@@ -13,17 +13,18 @@
 
         <div class="m-4 p-3 width-medium">
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
+                <form name="recipeToPlan" id="recipeToPlan" action="<c:url value="/app/recipe/plan/add"/>" method="post">
+
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding">
                         <h3 class="color-header text-uppercase">DODAJ PRZEPIS DO PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <a href="<c:url value="/app/plan/list"/>" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</a>
+                        <button form="recipeToPlan" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
                     </div>
                 </div>
 
                 <div class="schedules-content">
-                    <form action="app/recipe/plan/add" method="post">
                         <div class="form-group row">
                             <label for="choosePlan" class="col-sm-2 label-size col-form-label">
                                 Wybierz plan
@@ -41,24 +42,24 @@
                                 Nazwa posiłku
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="" id="name" placeholder="Nazwa posiłku">
+                                <input type="text" class="form-control" value="" name="name" id="name" placeholder="Nazwa posiłku">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="number" class="col-sm-2 label-size col-form-label">
+                            <label for="displayOrder" class="col-sm-2 label-size col-form-label">
                                 Numer posiłku
                             </label>
                             <div class="col-sm-2">
-                                <input type="number" class="form-control" value="" id="number"
+                                <input type="number" class="form-control" value="" name="displayOrder" id="displayOrder"
                                        placeholder="Numer posiłku">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="recipie" class="col-sm-2 label-size col-form-label">
+                            <label for="recipe" class="col-sm-2 label-size col-form-label">
                                 Przepis
                             </label>
                             <div class="col-sm-4">
-                                <select class="form-control" id="recipie" name="recipe" required autofocus>
+                                <select class="form-control" id="recipe" name="recipe" required autofocus>
                                     <c:forEach items="${recipeList}" var="recipe">
                                         <option value="${recipe.ID}">${recipe.name}</option>
                                     </c:forEach>
@@ -77,8 +78,9 @@
                                 </select>
                             </div>
                         </div>
-                    </form>
+
                 </div>
+                </form>
             </div>
         </div>
     </div>
