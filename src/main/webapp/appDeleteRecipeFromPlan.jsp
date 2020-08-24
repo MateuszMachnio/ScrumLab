@@ -20,10 +20,10 @@
                                 przepis "${recipe.name}" z planu "${plan.name}" ?</h3></div>
                         </div>
                         <div class="center" style="position:relative; top:70px">
-                            <button type="submit" formaction="/app/plan/delete/recipe" formmethod="post"
+                            <button type="submit" formaction="/app/plan/delete/recipe?planId=${planId}&recipeId=${recipeId}" formmethod="post"
                                     class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń
                             </button>
-                            <a href="/app/plan/details?id=${planId.id}" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
+                            <a href="/app/plan/details?planId=${planId}" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
                             </a>
                         </div>
                     </form>
