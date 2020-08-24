@@ -9,13 +9,26 @@
 <%@include file="WEB-INF/dashboardHeader.jspf" %>
 
 <section class="dashboard-section">
-    <form action="post">
+    <div class="row dashboard-nowrap">
         <%@include file="WEB-INF/sideBar.jspf" %>
-       
-        <a href="<c:url value="/app/recipe/list"/>"  class="btn btn-warning rounded-0 text-light m-1">Anuluj</a>
-        <a href="<c:url value="/app/recipe/delete"/>" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-
-    </form>
+        <div class="m-4 p-3 width-medium text-color-darker">
+            <div class="m-4 border-dashed view-height">
+                <div class="mt-4 ml-4 mr-4">
+                    <form method="post">
+                        <div class="row border-bottom border-3">
+                            <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
+                                przepis?</h3></div>
+                        </div>
+                        <div class="center" style="position:relative; top:70px">
+                            <button type="submit" name="recipeId" value="${recipeId}" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń</button>
+                            <a href="<c:url value="/app/recipe/list"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <%@include file="WEB-INF/footer.jspf" %>
 </body>

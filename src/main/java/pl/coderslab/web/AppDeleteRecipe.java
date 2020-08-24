@@ -13,14 +13,14 @@ import java.io.IOException;
 @WebServlet(name = "AppDeleteRecipe", value ="/app/recipe/safeDelete")
 public class AppDeleteRecipe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
+        RecipeDao recipeDao = new RecipeDao();
+        recipeDao.delete(recipeId);
+        response.sendRedirect("/app/recipe/list");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-            session.setAttribute("recipeId", request.getParameter("id"));
-            response.sendRedirect("/recipeSafeDelete.jsp");
-
-
+        request.setAttribute("recipeId", request.getParameter("id"));
+        getServletContext().getRequestDispatcher("/recipeSafeDelete.jsp").forward(request,response);
     }
 }
