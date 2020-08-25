@@ -19,6 +19,18 @@ import java.util.List;
 @WebServlet(name = "UnloggedRecipesList", value ="/recipes/list")
 public class UnloggedRecipesList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String searchRecipe = request.getParameter("searchRecipe");
+        RecipeDao recipeDao=new RecipeDao();
+        List<Recipe> recipes=recipeDao.findAll();
+        List<Recipe> foundedRecipes= new ArrayList<>();
+        for (Recipe recipe:recipes) {
+            if (recipe.getName().toLowerCase().contains(searchRecipe.toLowerCase())) {
+                foundedRecipes.add(recipe);
+            }
+        }
+        request.setAttribute("recipes", foundedRecipes);
+        getServletContext().getRequestDispatcher("/unloggedRecipesList.jsp").forward(request, response);
 
     }
 

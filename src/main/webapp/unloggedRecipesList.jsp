@@ -17,7 +17,24 @@
         <div class="orange-line w-100"></div>
     </div>
 </section>
-
+<%----%>
+<section>
+    <div class="border-dashed border-5 p-2 m-2 width-medium">
+        <form action="" method="post" name="findRecipe">
+        <div style="text-align:left; margin:0px auto 0px 40px;" class="d-inline-block">
+            <h3 class="color-header text-uppercase">Wyszukaj przepis</h3>
+        </div>
+        <div style="text-align:center; margin:0px 30% 0px 10%;" class="d-inline-block">
+            <input type="text" name="searchRecipe" id="search recipe" placeholder="Nazwa przepisu" size="50px" required>
+        </div>
+        <div style="text-align:right; margin:0px auto 0px auto;" class="d-inline-block" >
+            <button type="submit" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Wyszukaj
+            </button>
+        </div>
+        </form>
+    </div>
+</section>
+<%----%>
 <section class="mr-4 ml-4">
     <table class="table">
         <thead>
