@@ -19,7 +19,7 @@ public class AppUpdateRecipe extends HttpServlet {
         int preparationTime = Integer.parseInt(request.getParameter("preparationTime"));
         String preparation = request.getParameter("preparation");
         String ingredients = request.getParameter("ingredients");
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("recipeId"));
         HttpSession session = request.getSession();
         int userId = (int) session.getAttribute("loggedUser");
         Recipe recipe = new Recipe(name,ingredients,description,preparationTime,preparation,userId);
@@ -28,20 +28,12 @@ public class AppUpdateRecipe extends HttpServlet {
         RecipeDao recipeDao = new RecipeDao();
         recipeDao.update(recipe);   //dodaje nowy zamiast edytować!!
         response.sendRedirect("/app/recipe/list");
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-        String id = request.getParameter("id");
-
+        String recipeId = request.getParameter("recipeId");
         RecipeDao recipeDao = new RecipeDao();
-        request.setAttribute("recipe", recipeDao.read(Integer.parseInt(id)));
-
+        request.setAttribute("recipe", recipeDao.read(Integer.parseInt(recipeId)));
         getServletContext().getRequestDispatcher("/appEditRecipe.jsp").forward(request,response);
-
     }
 }
