@@ -64,7 +64,7 @@
                                 <td class="col-2">${details.mealName}</td>
                                 <td class="col-8">${details.recipeName}</td>
                                 <td class="col-2">
-                                    <a href="/app/recipe/details?from=dash&id=${details.id}">
+                                    <a href="/app/recipe/details?from=dash&recipeId=${details.id}">
                                         <button type="button" class="btn btn-primary rounded-0">Szczegóły</button>
                                     </a>
                                 </td>

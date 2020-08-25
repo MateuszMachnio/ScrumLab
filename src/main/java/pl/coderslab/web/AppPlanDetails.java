@@ -21,8 +21,6 @@ public class AppPlanDetails extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int planId = Integer.parseInt(request.getParameter("planId"));
-        HttpSession session = request.getSession();
-        session.setAttribute("planId", planId);
         PlanDao planDao = new PlanDao();
         Plan plan = planDao.read(planId);
         request.setAttribute("plan", plan);

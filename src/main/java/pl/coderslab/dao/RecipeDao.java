@@ -103,10 +103,6 @@ public class RecipeDao {
     public void update(Recipe recipe) {
 
         try (Connection connection = DbUtil.getConnection();
-
-
-
-
              PreparedStatement updateRecipe = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
 
             updateRecipe.setString(1, recipe.getName());
