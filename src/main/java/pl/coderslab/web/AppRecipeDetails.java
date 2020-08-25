@@ -17,7 +17,7 @@ public class AppRecipeDetails extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
         String from = request.getParameter("from");
         switch (from) {
             case "dash":
@@ -31,11 +31,12 @@ public class AppRecipeDetails extends HttpServlet {
                 break;
         }
         RecipeDao recipeDao = new RecipeDao();
-        Recipe recipe = recipeDao.read(id);
+        Recipe recipe = recipeDao.read(recipeId);
         String ingredients = recipe.getIngredients();
         String[] splitIngredients = ingredients.split(", ");
         request.setAttribute("recipe", recipe);
         request.setAttribute("splitIngredients", splitIngredients);
+        request.setAttribute("planId", request.getParameter("planId"));
         getServletContext().getRequestDispatcher("/appRecipeDetails.jsp").forward(request,response);
     }
 }
