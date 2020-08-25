@@ -21,34 +21,32 @@ public class AppDeleteRecipeFromPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String DELETE_RECIPE_FROM_PLAN = "DELETE FROM recipe_plan WHERE plan_id=? AND recipe_id=?;";
 
-        HttpSession session = request.getSession();
-        Plan plan = (Plan) session.getAttribute("plan");
-        Recipe recipe = (Recipe) session.getAttribute("recipe");
+        int planId = Integer.parseInt(request.getParameter("planId"));
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
 
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement deleteRecipeFromPlan = connection.prepareStatement(DELETE_RECIPE_FROM_PLAN)) {
-            deleteRecipeFromPlan.setInt(1, plan.getId());
-            deleteRecipeFromPlan.setInt(2, recipe.getID());
+            deleteRecipeFromPlan.setInt(1, planId);
+            deleteRecipeFromPlan.setInt(2, recipeId);
             deleteRecipeFromPlan.executeUpdate();
             System.out.println("Recipe was deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/app/plan/details?id=" + (plan.getId()));
+        response.sendRedirect("/app/plan/details?planId=" + (planId));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int recipeId = Integer.parseInt(request.getParameter("ID"));
-        HttpSession session = request.getSession();
-        int planId = (Integer) (session.getAttribute("planId"));
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
+        int planId =Integer.parseInt(request.getParameter("planId"));
+        request.setAttribute("recipeId", recipeId);
+        request.setAttribute("planId", planId);
         PlanDao planDao = new PlanDao();
         Plan plan = planDao.read(planId);
+        request.setAttribute("plan", plan);
         RecipeDao recipeDao = new RecipeDao();
         Recipe recipe = recipeDao.read(recipeId);
-        request.setAttribute("plan", plan);
         request.setAttribute("recipe", recipe);
-        session.setAttribute("plan", plan);
-        session.setAttribute("recipe", recipe);
 
         getServletContext().getRequestDispatcher("/appDeleteRecipeFromPlan.jsp").forward(request, response);
     }

@@ -20,13 +20,15 @@ public class AppPlanDetails extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int planId = Integer.parseInt(request.getParameter("planId"));
         HttpSession session = request.getSession();
-        session.setAttribute("planId", id);
+        session.setAttribute("planId", planId);
         PlanDao planDao = new PlanDao();
-        Plan plan = planDao.read(id);
+        Plan plan = planDao.read(planId);
         request.setAttribute("plan", plan);
-        Map<String, List<PlanDetails>> stringListMap = planDao.detailsOfPlan(id);
+        System.out.println(planId);
+        request.setAttribute("planId", planId);
+        Map<String, List<PlanDetails>> stringListMap = planDao.detailsOfPlan(planId);
         request.setAttribute("planDetails", stringListMap);
         getServletContext().getRequestDispatcher("/appPlanDetails.jsp").forward(request, response);
     }
