@@ -14,6 +14,8 @@ import java.io.IOException;
 @WebServlet(name = "AppAddPlan", value = "/app/plan/add")
 public class AppAddPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
         String planName = request.getParameter("planName");
         String planDescription = request.getParameter("planDescription");
         if (planName.equals("") || planDescription.equals("")) {
