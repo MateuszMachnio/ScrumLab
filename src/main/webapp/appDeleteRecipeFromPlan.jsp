@@ -17,7 +17,7 @@
                         <div class="row border-bottom border-3">
                             <div align="center" class="col">
                                 <h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
-                                przepis "${recipe.name}" z planu "${plan.name}" ?</h3>
+                                przepis "${recipe.name}" z planu "${plan.name}"?</h3>
                             </div>
                         </div>
                         <div class="center" style="position:relative; top:70px">
