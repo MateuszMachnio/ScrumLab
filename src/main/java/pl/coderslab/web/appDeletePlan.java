@@ -15,13 +15,9 @@ public class appDeletePlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int planId = Integer.parseInt(request.getParameter("planId"));
         PlanDao planDao = new PlanDao();
+        planDao.deleteRecipesFromPlan(planId);
         planDao.delete(planId);
-        boolean delete = planDao.delete(planId);
-        if (delete) {
-            request.setAttribute("delete", 0);
-            getServletContext().getRequestDispatcher("/planSafeDelete.jsp").forward(request,response);
-            return;
-        }
+
         response.sendRedirect("/app/plan/list");
     }
 
