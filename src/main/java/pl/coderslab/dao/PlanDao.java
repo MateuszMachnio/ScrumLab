@@ -40,6 +40,7 @@ public class PlanDao {
             "         JOIN recipe on recipe.id=recipe_id WHERE plan_id = ? -- zamiast 6 należy wstawić id planu do pobrania --\n" +
             "ORDER by day_name.display_order, recipe_plan.display_order;";
 
+    private static final String DELETE_RECIPES_FROM_PLAN = "DELETE FROM recipe_plan WHERE plan_id =?;";
 
     //Get plan by id
     public Plan read(Integer planId) {
@@ -257,6 +258,21 @@ public class PlanDao {
         }
         return planDetailsMap;
     }
+
+    public boolean deleteRecipesFromPlan(int planId) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_RECIPES_FROM_PLAN)) {
+            statement.setInt(1, planId);
+            statement.executeUpdate();
+            if (!statement.execute()) {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 
 }
 
