@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "addRecipe",value =  "/app/recipe/add")
 public class AppAddRecipe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         String name = request.getParameter("name");
         String description = request.getParameter("description");
