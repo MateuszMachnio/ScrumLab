@@ -64,7 +64,7 @@
                                     <td class="col-2">${details.mealName}</td>
                                     <td class="col-7">${details.recipeName}</td>
                                     <td class="col-1 center">
-                                        <a href="/app/plan/delete/recipe?id=${details.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                        <a href="/app/plan/delete/recipe?planId=${planId}&recipeId=${details.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                     </td>
                                     <td class="col-2 center">
                                         <a href="/app/recipe/details?from=plan&id=${details.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
