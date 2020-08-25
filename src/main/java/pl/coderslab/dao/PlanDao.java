@@ -130,14 +130,18 @@ public class PlanDao {
     }
 
     //Remove plan by id
-    public void delete(Integer planId) {
+    public boolean delete(Integer planId) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PLAN_QUERY)) {
             statement.setInt(1, planId);
             statement.executeUpdate();
+            if (!statement.execute()) {
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     public int amountOfPlans(int adminId) {

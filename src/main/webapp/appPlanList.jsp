@@ -39,11 +39,12 @@
                             <td class="col-2">${plan.name}</td>
                             <td class="col-7">${plan.description}</td>
 
-                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap"><a href="#"
+                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
+                                <a href="<c:url value="/app/plan/delete?planId=${plan.id}"/>"
                                                                                                             class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                 <a href="<c:url value="/app/plan/details?planId=${plan.id}"/>"
                                    class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                <a href="<c:url value="/app/plan/edit?planId=${plan.id}"/>" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                                <a href="<c:url value="/app/plan/edit1?planId=${plan.id}"/>" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                             </td>
                             </c:forEach>
                         </tbody>
