@@ -25,9 +25,9 @@ public class Login extends HttpServlet {
         }
 
         Admins user = adminsDao.readByEmail(email);
-        
-        if(user !=null){
+        System.out.println(user);
 
+        if(user.getPassword() !=null){
 
         boolean checkPass = BCrypt.checkpw(password, user.getPassword());
         if (checkPass && user.getEnable() == 1) {
