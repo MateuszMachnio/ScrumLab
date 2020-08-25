@@ -20,7 +20,11 @@
                                 przepis?</h3>
                             </div>
                         </div>
-
+                        <c:if test="${delete != null}">
+                            <div class="center; alert-info" style="position:relative; top:35px; text-align: center; color: red">
+                                <h4>Ten przepis jest wykorzystywany w jakimś planie. Najpierw należy usunąć przepis ze wszystkich planów w których jest wykorzystywany.</h4>
+                            </div>
+                        </c:if>
                         <div class="center" style="position:relative; top:70px">
                             <button type="submit" name="recipeId" value="${recipeId}" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń</button>
                             <a href="<c:url value="/app/recipe/list"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
