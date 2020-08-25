@@ -12,23 +12,17 @@
             <div class="col text-center">
                 <i class="fas fa-check icon-details"></i>
                 <h1>Cel</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
+                <p> </p>
             </div>
             <div class="col text-center pr-4 pl-4 mr-4 ml-4">
                 <i class="far fa-clock icon-details"></i>
                 <h1>Historia</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
+                <p></p>
             </div>
             <div class="col text-center">
                 <i class="fas fa-list icon-details"></i>
                 <h1>Twórcy</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
+                <p>"${dataInfo.authors}"</p>
             </div>
         </div>
     </div>
