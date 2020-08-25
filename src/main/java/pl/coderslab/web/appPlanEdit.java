@@ -23,6 +23,7 @@ public class appPlanEdit extends HttpServlet {
         HttpSession ses = request.getSession();
         int adminId = (int)ses.getAttribute("loggedUser");
         Plan plan = new Plan(planName,planDescription,created,adminId);
+        plan.setId(planId);
         PlanDao planDao = new PlanDao();
         planDao.update(plan);
         response.sendRedirect("/app/plan/list");
