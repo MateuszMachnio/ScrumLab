@@ -25,6 +25,10 @@ public class Login extends HttpServlet {
         }
 
         Admins user = adminsDao.readByEmail(email);
+        System.out.println(user);
+
+        if(user.getPassword() !=null){
+
         boolean checkPass = BCrypt.checkpw(password, user.getPassword());
         if (checkPass && user.getEnable() == 1) {
             HttpSession oldSession = request.getSession();
@@ -38,6 +42,10 @@ public class Login extends HttpServlet {
         } else if (checkPass && user.getEnable() != 1) {
             response.sendRedirect("/notActiveUser.jsp");
         } else {
+            response.sendRedirect("/wrongData.jsp");
+        }
+        }
+        else {
             response.sendRedirect("/wrongData.jsp");
         }
     }

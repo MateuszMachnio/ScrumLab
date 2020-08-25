@@ -1,5 +1,8 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.otherInformationsDao;
+import pl.coderslab.model.otherInformations;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +16,8 @@ public class About extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/about.jsp");
+        otherInformationsDao otherInformationsDao = new otherInformationsDao();
+        request.setAttribute("dataInfo",otherInformationsDao.read(1));
+        getServletContext().getRequestDispatcher("/about.jsp").forward(request,response);
     }
 }
