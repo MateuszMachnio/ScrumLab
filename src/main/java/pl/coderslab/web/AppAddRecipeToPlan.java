@@ -67,20 +67,29 @@ public class AppAddRecipeToPlan extends HttpServlet {
                 recipeList.add(recipe);
             }
         }
-        recipeList.sort(Comparator.comparing(Recipe::getCreated).reversed());
-        request.setAttribute("recipeList", recipeList);
+        if (recipeList.isEmpty()) {
+            getServletContext().getRequestDispatcher("/appEmptyRecipes.jsp").forward(request,response);
+        } else {
+            recipeList.sort(Comparator.comparing(Recipe::getCreated).reversed());
+            request.setAttribute("recipeList", recipeList);
+        }
 
 
         //wysyłamy posortowana liste planów użytkownika
         List<Plan> plans = planDao.findAll();
         List<Plan> planList = new ArrayList<>();
-        for (Plan plan : plans) {
+        for (
+                Plan plan : plans) {
             if (user.getId() == plan.getAdminId()) {
                 planList.add(plan);
             }
+        }
+        if (planList.isEmpty()) {
+            getServletContext().getRequestDispatcher("/appEmptyPlans.jsp").forward(request, response);
+//            response.sendRedirect("/appEmptyRecipes.jsp");
+        } else {
             planList.sort(Comparator.comparing(Plan::getCreated).reversed());
             request.setAttribute("planList", planList);
-
         }
         getServletContext().getRequestDispatcher("/appAddRecipeToPlan.jsp").forward(request, response);
     }
