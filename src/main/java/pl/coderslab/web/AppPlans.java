@@ -20,7 +20,7 @@ public class AppPlans extends HttpServlet {
 
         HttpSession session = request.getSession();
         int id = (int) session.getAttribute("loggedUser");
-        System.out.println(id);
+//        System.out.println(id);
         PlanDao planDao = new PlanDao();
         request.setAttribute("plan", planDao.findAllByDate(id));
         getServletContext().getRequestDispatcher("/appPlanList.jsp").forward(request,response);
