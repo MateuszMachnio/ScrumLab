@@ -20,11 +20,11 @@
 <%----%>
 <section>
     <div class="border-dashed border-5 p-2 m-2 width-medium">
-        <form action="" method="post" name="findRecipe">
-        <div style="text-align:left; margin:0px auto 0px 40px;" class="d-inline-block">
-            <h3 class="color-header text-uppercase">Wyszukaj przepis</h3>
+        <form method="post">
+        <div style="text-align:left; margin:7px 20px 0px 0px;" class="d-inline-block">
+            <h3 class="color-header text-uppercase">Wyszukaj przepis:</h3>
         </div>
-        <div style="text-align:center; margin:0px 30% 0px 10%;" class="d-inline-block">
+        <div style="text-align:center; margin:0px 10px 10px 0px;" class="d-inline-block">
             <input type="text" name="searchRecipe" id="search recipe" placeholder="Nazwa przepisu" size="50px" required>
         </div>
         <div style="text-align:right; margin:0px auto 0px auto;" class="d-inline-block" >
@@ -36,29 +36,34 @@
 </section>
 <%----%>
 <section class="mr-4 ml-4">
-    <table class="table">
-        <thead>
-        <tr class="d-flex text-color-darker">
-            <th scope="col" class="col-1">ID</th>
-            <th scope="col" class="col-5">NAZWA</th>
-            <th scope="col" class="col-5">OPIS</th>
-            <th scope="col" class="col-1">AKCJE</th>
-        </tr>
-        </thead>
-        <tbody class="text-color-lighter">
-        <c:forEach var="recipe" items="${recipes}">
-            <tr class="d-flex">
-                <th scope="row" class="col-1">${recipe.ID}</th>
-                <td class="col-5">
-                        ${recipe.name}
-                </td>
-                <td class="col-5">${recipe.description}</td>
-                <td class="col-1"><a href="<c:url value="/recipe/details?recipeId=${recipe.ID}"/>" class=" btn btn-info
-                                     rounded-0 text-light">Szczegóły</a></td>
+    <c:if test="${emptyList != null}">
+        <div class="center; alert-info" style="position:relative; top:20px; margin-bottom:50px; text-align: center; color: red">
+            <h3>Niestety nie ma takiego przepisu w naszej bazie.</h3>
+        </div>
+    </c:if>
+    <c:if test="${emptyList == null}">
+        <table class="table">
+            <thead>
+            <tr class="d-flex text-color-darker">
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-5">NAZWA</th>
+                <th scope="col" class="col-5">OPIS</th>
+                <th scope="col" class="col-1">AKCJE</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="text-color-lighter">
+            <c:forEach var="recipe" items="${recipes}">
+                <tr class="d-flex">
+                    <th scope="row" class="col-1">${recipe.ID}</th>
+                    <td class="col-5">${recipe.name}</td>
+                    <td class="col-5">${recipe.description}</td>
+                    <td class="col-1"><a href="<c:url value="/recipe/details?recipeId=${recipe.ID}"/>" class=" btn btn-info
+                                     rounded-0 text-light">Szczegóły</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 </section>
 
 <%@include file="WEB-INF/footer.jspf" %>
