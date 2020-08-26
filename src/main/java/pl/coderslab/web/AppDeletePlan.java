@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "appDeletePlan", value = "/app/plan/delete")
-public class appDeletePlan extends HttpServlet {
+public class AppDeletePlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int planId = Integer.parseInt(request.getParameter("planId"));
         PlanDao planDao = new PlanDao();
@@ -23,6 +23,7 @@ public class appDeletePlan extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("planId", request.getParameter("planId"));
+        request.setAttribute("planName", request.getParameter("planName"));
         getServletContext().getRequestDispatcher("/planSafeDelete.jsp").forward(request,response);
     }
 }

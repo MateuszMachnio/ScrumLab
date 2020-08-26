@@ -12,19 +12,17 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "appPlanEdit", value = "/app/plan/edit1")
-public class appPlanEdit extends HttpServlet {
+public class AppPlanEdit extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
         String planName = request.getParameter("planName");
         String planDescription = request.getParameter("planDescription");
         int planId = Integer.parseInt(request.getParameter("planId"));
-        String created = request.getParameter("created");
-        HttpSession ses = request.getSession();
-        int adminId = (int)ses.getAttribute("loggedUser");
-        Plan plan = new Plan(planName,planDescription,created,adminId);
-        plan.setId(planId);
         PlanDao planDao = new PlanDao();
+        Plan plan = planDao.read(planId);
+        plan.setName(planName);
+        plan.setDescription(planDescription);
         planDao.update(plan);
         response.sendRedirect("/app/plan/list");
 
