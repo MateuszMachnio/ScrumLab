@@ -19,13 +19,7 @@
                             <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
                                 plan "${planName}"?</h3>
                             </div>
-                            </div>
-                            <c:if test="${delete != null}">
-                                <div class="center; alert-info" style="position:relative; top:35px; text-align: center; color: red">
-                                    <h4>W tym planie są przepisy, usuń je najpierw!</h4>
-                                </div>
-                            </c:if>
-
+                        </div>
                         <div class="center" style="position:relative; top:70px">
                             <button type="submit" name="planId" value="${planId}" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń</button>
                             <a href="<c:url value="/app/plan/list"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
