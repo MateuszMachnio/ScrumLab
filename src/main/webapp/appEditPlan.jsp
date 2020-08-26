@@ -16,10 +16,9 @@
                 <!-- add name attribute for all inputs -->
                 <form action="<c:url value="/app/plan/edit1"/>" method="post">
                     <input type="hidden" name="planId" value="${plan.id}">
-                    <input type="hidden" name="created" value="${plan.created}">
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
-                            <h3 class="color-header text-uppercase">EDYCJA PLANU</h3>
+                            <h3 class="color-header text-uppercase">EDYCJA PLANU: ${plan.name}</h3>
                         </div>
                         <div class="col d-flex justify-content-end mb-2">
                             <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
