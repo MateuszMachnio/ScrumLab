@@ -1,12 +1,14 @@
 package pl.coderslab.model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class Admins {
 
     private int id;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private String password = BCrypt.hashpw("", BCrypt.gensalt());
     private int superadmin;
     private int enable;
 
