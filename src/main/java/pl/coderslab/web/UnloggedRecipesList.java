@@ -1,8 +1,6 @@
 package pl.coderslab.web;
 
-import pl.coderslab.dao.AdminsDao;
 import pl.coderslab.dao.RecipeDao;
-import pl.coderslab.model.Admins;
 import pl.coderslab.model.Recipe;
 
 import javax.servlet.ServletException;
@@ -10,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,8 +21,8 @@ public class UnloggedRecipesList extends HttpServlet {
         RecipeDao recipeDao = new RecipeDao();
         List<Recipe> recipes = recipeDao.findAll();
         List<Recipe> foundedRecipes = new ArrayList<>();
-        for (Recipe recipe:recipes) {
-            if (recipe.getName().toLowerCase().trim().contains(searchRecipe.toLowerCase().trim())) {
+        for (Recipe recipe : recipes) {
+            if (recipe.getName().toLowerCase().replaceAll("\\s", "").contains(searchRecipe.toLowerCase().replaceAll("\\s", ""))) {
                 if (!foundedRecipes.contains(recipe)) {
                     foundedRecipes.add(recipe);
                 }
@@ -45,7 +42,7 @@ public class UnloggedRecipesList extends HttpServlet {
         List<Recipe> allRecipes = recipeDao.findAll();
         List<Recipe> recipes = new ArrayList<>();
         for (Recipe recipe : allRecipes) {
-            if (!recipes.contains(recipe)){
+            if (!recipes.contains(recipe)) {
                 recipes.add(recipe);
             }
         }
