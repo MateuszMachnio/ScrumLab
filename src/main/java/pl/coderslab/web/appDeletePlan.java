@@ -23,6 +23,7 @@ public class appDeletePlan extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("planId", request.getParameter("planId"));
+        request.setAttribute("planName", request.getParameter("planName"));
         getServletContext().getRequestDispatcher("/planSafeDelete.jsp").forward(request,response);
     }
 }

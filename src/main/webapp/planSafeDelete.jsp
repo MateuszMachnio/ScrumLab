@@ -17,7 +17,7 @@
                     <form method="post">
                         <div class="row border-bottom border-3">
                             <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
-                                plan?</h3>
+                                plan "${planName}"?</h3>
                             </div>
                             </div>
                             <c:if test="${delete != null}">

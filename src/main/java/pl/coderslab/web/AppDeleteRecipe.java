@@ -25,7 +25,8 @@ public class AppDeleteRecipe extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("recipeId", request.getParameter("id"));
+        request.setAttribute("recipeId", request.getParameter("recipeId"));
+        request.setAttribute("recipeName", request.getParameter("recipeName"));
         getServletContext().getRequestDispatcher("/recipeSafeDelete.jsp").forward(request,response);
     }
 }
