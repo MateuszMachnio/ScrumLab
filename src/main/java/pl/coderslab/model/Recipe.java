@@ -126,5 +126,13 @@ public class Recipe   {
                 '}';
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) return false;
+        if(obj instanceof Recipe){
+            Recipe r=(Recipe) obj;
+            return r.name.toLowerCase().trim().equals(this.name.toLowerCase().trim())&&r.description.toLowerCase().trim().equals(this.description.toLowerCase().trim())&&r.ingredients.toLowerCase().trim().equals(this.ingredients.toLowerCase().trim());
+        }
+        return false;
+    }
 }
