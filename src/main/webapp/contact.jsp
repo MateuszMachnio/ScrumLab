@@ -14,10 +14,13 @@
             </div>
             <div class="col-7 ml-4">
                 <h1 class="pb-1">Kontakt z nami</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat volutpat. Donec
-                    placerat nisl magna, et faucibus arcu condimentum sed.
+                <p>"${dataInfo.companyName}"
+                </p>
+                <p>"${dataInfo.companyAdress}"
+                </p>
+                <p>"${dataInfo.companyEmail}"
+                </p>
+                <p>"${dataInfo.companyPhone}"
                 </p>
             </div>
         </div>

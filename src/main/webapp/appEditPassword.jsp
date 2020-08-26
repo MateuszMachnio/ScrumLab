@@ -15,7 +15,7 @@
                 <div class="mt-4 ml-4 mr-4">
                     <!-- fix action, method -->
                     <!-- add name attribute for all inputs -->
-                    <form>
+                    <form action="<c:url value="/app/password/edit"/>" method="post">
 
                         <div class="row border-bottom border-3">
                             <div class="col"><h3 class="color-header text-uppercase">Zmień hasło</h3></div>
@@ -30,17 +30,24 @@
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Nowe hasło</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" value="" type="password">
+                                    <input class="w-100 p-1" name ="password" id ="password" value="" type="password" required>
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Powtórz hasło</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" value="" type="password">
+                                    <input class="w-100 p-1"name ="repeatPassword" id ="repeatPassword" value="" type="password" required>
                                 </td>
+
                             </tr>
+
                             </tbody>
                         </table>
+                        <c:if test="${delete != null}">
+                            <div class="center; alert-info" style="position:relative; top:35px; text-align: center; color: red">
+                                <h4>Hasła nie są równe, spróbuj jeszcze raz</h4>
+                            </div>
+                        </c:if>
                     </form>
                 </div>
             </div>

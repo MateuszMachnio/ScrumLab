@@ -16,15 +16,25 @@
                     <form>
                         <div class="row border-bottom border-3">
                             <div align="center" class="col">
-                                <h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
-                                przepis "${recipe.name}" z planu "${plan.name}"?</h3>
+                                <h3 class="color-header text-uppercase">Czy na pewno chcesz się wylogować
+                                    <%
+                                        HttpSession sessionLogout= request.getSession();
+                                        AdminsDao ao = new AdminsDao();
+                                        Admins loggedUser = adminsDao.read((Integer) sessionName.getAttribute("loggedUser"));
+                                        String login = user.getFirstName();
+                                        request.setAttribute("login", login);
+                                    %>
+                                    ${login}?</h3>
                             </div>
                         </div>
                         <div class="center" style="position:relative; top:70px">
-                            <button type="submit" formaction="/app/plan/delete/recipe?planId=${planId}&recipeId=${recipeId}" formmethod="post"
-                                    class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń
+                            <button type="submit"
+                                    formaction="/logout"
+                                    formmethod="post"
+                                    class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Wyloguj
                             </button>
-                            <a href="<c:url value="/app/plan/details?planId=${planId}"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
+                            <a href="<c:url value="/app"/>"
+                               class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
                             </a>
                         </div>
                     </form>

@@ -14,9 +14,11 @@
                 Admins user = adminsDao.read((Integer) sessionName.getAttribute("loggedUser"));
                 String name = user.getFirstName();
                 request.setAttribute("name", name);
+                int superadmin = user.getSuperadmin();
+                request.setAttribute("superadmin", superadmin);
             %>${name}</h4>
 
-            <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
+            <a href="/logout"><div onclick="" class="circle-div text-center"><i class="fas fa-user icon-user"></i></div></a>
         </div>
     </nav>
 </header>

@@ -1,23 +1,23 @@
 package pl.coderslab.web;
 
-import pl.coderslab.dao.otherInformationsDao;
-import pl.coderslab.model.otherInformations;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "About",value = "/about")
-public class About extends HttpServlet {
+@WebServlet(name = "Logout" ,value = "/logout")
+public class Logout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().invalidate();
+        response.sendRedirect("/goodbye.jsp");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        otherInformationsDao otherInformationsDao = new otherInformationsDao();
-        request.setAttribute("dataInfo",otherInformationsDao.read(1));
-        getServletContext().getRequestDispatcher("/about.jsp").forward(request,response);
+        response.sendRedirect("/logout.jsp");
+
     }
 }

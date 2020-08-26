@@ -4,6 +4,7 @@
 
 <%@include file="WEB-INF/head.jspf" %>
 
+
 <body>
 <%@include file="WEB-INF/dashboardHeader.jspf" %>
 
@@ -13,18 +14,21 @@
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="m-4 border-dashed view-height">
                 <div class="mt-4 ml-4 mr-4">
-                    <form>
+                    <form method="post">
                         <div class="row border-bottom border-3">
-                            <div align="center" class="col">
-                                <h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
-                                przepis "${recipe.name}" z planu "${plan.name}"?</h3>
+                            <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
+                                plan?</h3>
                             </div>
-                        </div>
+                            </div>
+                            <c:if test="${delete != null}">
+                                <div class="center; alert-info" style="position:relative; top:35px; text-align: center; color: red">
+                                    <h4>W tym planie są przepisy, usuń je najpierw!</h4>
+                                </div>
+                            </c:if>
+
                         <div class="center" style="position:relative; top:70px">
-                            <button type="submit" formaction="/app/plan/delete/recipe?planId=${planId}&recipeId=${recipeId}" formmethod="post"
-                                    class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń
-                            </button>
-                            <a href="<c:url value="/app/plan/details?planId=${planId}"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
+                            <button type="submit" name="planId" value="${planId}" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń</button>
+                            <a href="<c:url value="/app/plan/list"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
                             </a>
                         </div>
                     </form>
