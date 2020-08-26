@@ -26,7 +26,9 @@ public class UnloggedRecipesList extends HttpServlet {
         List<Recipe> foundedRecipes = new ArrayList<>();
         for (Recipe recipe:recipes) {
             if (recipe.getName().toLowerCase().trim().contains(searchRecipe.toLowerCase().trim())) {
-                foundedRecipes.add(recipe);
+                if (!foundedRecipes.contains(recipe)) {
+                    foundedRecipes.add(recipe);
+                }
             }
         }
         foundedRecipes.sort(Comparator.comparing(Recipe::getCreated).reversed());
