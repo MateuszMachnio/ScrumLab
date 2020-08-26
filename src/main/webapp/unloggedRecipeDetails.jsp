@@ -8,8 +8,8 @@
 <body>
 <%@include file="/WEB-INF/header.jspf" %>
 
-<section class="mr-4 ml-4">
-    <div class="row pt-4 pb-2">
+<section>
+    <div class="row padding-small">
         <i class="fas fa-users icon-users"></i>
         <h1>Przepisy naszych użytkowników:</h1>
         <hr>
