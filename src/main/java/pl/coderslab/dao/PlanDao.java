@@ -34,7 +34,7 @@ public class PlanDao {
             "        recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
             "ORDER by day_name.display_order, recipe_plan.display_order;";
     private static final String NAME_OF_RECENT_PLAN = "SELECT name FROM plan WHERE plan.id = (SELECT MAX(id) from plan WHERE admin_id = ?);";
-    private static final String DETAILS_OF_PLAN_BY_PLAN_ID = "SELECT day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
+    private static final String DETAILS_OF_PLAN_BY_PLAN_ID = "SELECT id as recipe_plan_id day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description, recipe_id\n" +
             "FROM `recipe_plan`\n" +
             "         JOIN day_name on day_name.id=day_name_id\n" +
             "         JOIN recipe on recipe.id=recipe_id WHERE plan_id = ? -- zamiast 6 należy wstawić id planu do pobrania --\n" +
@@ -245,6 +245,7 @@ public class PlanDao {
                 }
                 PlanDetails planToAdd = new PlanDetails();
 //                planToAdd.setDayName(resultSet.getString("day_name"));
+                planToAdd.getRecipePlanId(resultSet.getInt("recipe_plan_id"));
                 planToAdd.setMealName(resultSet.getString("meal_name"));
                 planToAdd.setRecipeName(resultSet.getString("recipe_name"));
                 planToAdd.setRecipeDescription(resultSet.getString("recipe_description"));
