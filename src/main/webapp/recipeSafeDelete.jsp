@@ -16,20 +16,35 @@
                 <div class="mt-4 ml-4 mr-4">
                     <form method="post">
                         <div class="row border-bottom border-3">
-                            <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć
+                            <div align="center" class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz
+                                usunąć
                                 przepis "${recipeName}"?</h3>
                             </div>
                         </div>
-                        <c:if test="${delete != null}">
-                            <div class="center; alert-info" style="position:relative; top:35px; text-align: center; color: red">
-                                <h4>Ten przepis jest wykorzystywany w jakimś planie. Najpierw należy usunąć przepis ze wszystkich planów w których jest wykorzystywany.</h4>
-                            </div>
-                        </c:if>
-                        <div class="center" style="position:relative; top:70px">
-                            <button type="submit" name="recipeId" value="${recipeId}" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń</button>
-                            <a href="<c:url value="/app/recipe/list"/>" class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
-                            </a>
-                        </div>
+                        <c:choose>
+                            <c:when test="${delete != null}">
+                                <div class="center; alert-info"
+                                     style="position:relative; top:35px; text-align: center; color: red">
+                                    <h4>Ten przepis jest wykorzystywany w jakimś planie. Najpierw należy usunąć przepis
+                                        ze wszystkich planów w których jest wykorzystywany.</h4>
+                                </div>
+                                <div class="center" style="position:relative; top:70px">
+                                    <a href="<c:url value="/app/recipe/list"/>"
+                                       class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Powrót
+                                    </a>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="center" style="position:relative; top:70px">
+                                    <button type="submit" name="recipeId" value="${recipeId}"
+                                            class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń
+                                    </button>
+                                    <a href="<c:url value="/app/recipe/list"/>"
+                                       class="btn btn-color rounded-1 pt-0 pb-0 pr-4 pl-4">Anuluj
+                                    </a>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </form>
                 </div>
             </div>
