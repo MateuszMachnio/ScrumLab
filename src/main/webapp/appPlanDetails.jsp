@@ -69,7 +69,6 @@
                                     <td class="col-2 center">
                                         <a href="/app/plan/delete/recipe?planId=${planId}&recipeId=${details.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń przepis z planu</a>
                                     </td>
-
                                     <td class="col-2 center">
                                         <a href="/app/recipe/details?planId=${planId}&from=plan&recipeId=${details.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                     </td>
