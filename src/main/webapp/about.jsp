@@ -12,17 +12,19 @@
             <div class="col text-center">
                 <i class="fas fa-check icon-details"></i>
                 <h1>Cel</h1>
-                <p> </p>
+                <p> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.</p>
             </div>
             <div class="col text-center pr-4 pl-4 mr-4 ml-4">
                 <i class="far fa-clock icon-details"></i>
                 <h1>Historia</h1>
-                <p></p>
+                <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.</p>
             </div>
             <div class="col text-center">
                 <i class="fas fa-list icon-details"></i>
                 <h1>Twórcy</h1>
-                <p>"${dataInfo.authors}"</p>
+                <p class="color-header text-uppercase">"${dataInfo.authors}"</p>
             </div>
         </div>
     </div>
