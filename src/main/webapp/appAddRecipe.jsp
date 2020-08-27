@@ -31,14 +31,14 @@
                                 <th scope="row" class="col-2">Nazwa Przepisu</th>
                                 <td class="col-7">
 
-                                    <input name="name" name="name" id="name" class="w-100 p-1" value="" required>
+                                    <input name="name" name="name" id="name" class="w-100 p-1" required = "required" pattern=".*\S+" value="" >
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Opis przepisu</th>
                                 <td class="col-7"><textarea name="description" id="description" class="w-100 p-1"
                                                             rows="5"
-                                                            required></textarea></td>
+                                                            required = "required" pattern=".*\S+" ></textarea></td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Przygotowanie (minuty)</th>
@@ -60,13 +60,13 @@
                         <div class="row d-flex">
                             <div class="col-5 p-4">
                                 <textarea name="preparation" id="preparation" class="w-100 p-1" rows="10"
-                                          required></textarea>
+                                          required = "required" pattern=".*\S+"  ></textarea>
                             </div>
                             <div class="col-2"></div>
 
                             <div class="col-5 p-4">
                                 <textarea name="ingredients" id="ingredients" class="w-100 p-1" rows="10"
-                                          required></textarea>
+                                          required = "required" pattern=".*\S+"  ></textarea>
                             </div>
                         </div>
                     </div>

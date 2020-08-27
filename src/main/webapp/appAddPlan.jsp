@@ -29,7 +29,7 @@
                                 Nazwa planu
                             </label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="planName" name="planName" placeholder="Nazwa planu"  required="required" pattern="[A-Za-z0-9]{1,20}"  >
+                                <input class="form-control" id="planName" name="planName" placeholder="Nazwa planu"  required ="required" pattern=".*\S+"  >
                             </div>
                         </div>
                         <div class="form-group row">
@@ -38,7 +38,7 @@
                             </label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="5" id="planDescription" name="planDescription"
-                                          placeholder="Opis plany"  required="required"  pattern="[A-Za-z0-9]{1,20}"></textarea>
+                                          placeholder="Opis plany"   required = "required" pattern=".*\S+"></textarea>
                             </div>
                         </div>
                     </div>
