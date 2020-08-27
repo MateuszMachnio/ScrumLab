@@ -14,7 +14,7 @@
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
-                <form action="<c:url value="/app/plan/edit1"/>" method="post">
+                <form action="<c:url value="/app/plan/edit"/>" method="post">
                     <input type="hidden" name="planId" required = "required" pattern="[A-Za-z]+.*" >
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
