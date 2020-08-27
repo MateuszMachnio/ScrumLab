@@ -35,7 +35,7 @@
                             </c:if>
                             <c:if test="${noData != null}">
                                 <div class="center; alert-info" style="position:relative; top:20px; margin-bottom: 40px; text-align: center; color: red">
-                                    <h4>Białe znaki niedozwolone!</h4>
+                                    <h4>Hasło nie może składać się tylko z białych znaków!</h4>
                                 </div>
                             </c:if>
                             <table class="table borderless">
