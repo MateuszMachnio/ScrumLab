@@ -245,11 +245,11 @@ public class PlanDao {
                 }
                 PlanDetails planToAdd = new PlanDetails();
 //                planToAdd.setDayName(resultSet.getString("day_name"));
-                planToAdd.getRecipePlanId(resultSet.getInt("recipe_plan_id"));
                 planToAdd.setMealName(resultSet.getString("meal_name"));
                 planToAdd.setRecipeName(resultSet.getString("recipe_name"));
                 planToAdd.setRecipeDescription(resultSet.getString("recipe_description"));
                 planToAdd.setId(resultSet.getInt("recipe_id"));
+                planToAdd.setRecipePlanId(resultSet.getInt("recipe_plan_id"));
                 planDetailsList.add(planToAdd);
                 planDetailsMap.put(tmp, planDetailsList);
                 valueOfdayName = tmp;
