@@ -23,6 +23,12 @@
                             </div>
                         </div>
 
+                        <div style="position: relative; margin-top: 20px">
+                            <c:if test="${noData != null}">
+                                <div class="center; alert-info" style="position:relative; top:20px; margin-bottom: 40px; text-align: center; color: red">
+                                    <h4>Białe znaki niedozwolone!</h4>
+                                </div>
+                            </c:if>
                         <table class="table borderless">
                             <tbody>
                             <tr class="d-flex">
@@ -45,6 +51,7 @@
                             </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </form>
             </div>

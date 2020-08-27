@@ -14,20 +14,29 @@ import java.io.IOException;
 @WebServlet(name = "AppEditUserData", value = "/app/userData/edit")
 public class AppEditUserData extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminsDao adminsDao=new AdminsDao();
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         int loggedUser = (Integer)session.getAttribute("loggedUser");
         String userFirstName = request.getParameter("userFirstName");
         String userLastName = request.getParameter("userLastName");
         String userEmail = request.getParameter("userEmail");
-        adminsDao.updateUser(userFirstName, userLastName, userEmail, loggedUser);
+        AdminsDao adminsDao = new AdminsDao();
+        Admins user = adminsDao.read(loggedUser);
+        if (userFirstName.matches("[\\s]+") || userLastName.matches("[\\s]+") || userEmail.matches("[\\s]+")) {
+            request.setAttribute("noData", 0);
+            request.setAttribute("user", user);
+            getServletContext().getRequestDispatcher("/appEditUserData.jsp").forward(request,response);
+            return;
+        }
+        user.setFirstName(userFirstName);
+        user.setLastName(userLastName);
+        user.setEmail(userEmail);
+        adminsDao.update(user);
         response.sendRedirect("/app");
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session= request.getSession();
-        AdminsDao adminsDao=new AdminsDao();
+        HttpSession session = request.getSession();
+        AdminsDao adminsDao = new AdminsDao();
         Admins user = adminsDao.read((Integer)session.getAttribute("loggedUser"));
         request.setAttribute("user", user);
         getServletContext().getRequestDispatcher("/appEditUserData.jsp").forward(request,response);
