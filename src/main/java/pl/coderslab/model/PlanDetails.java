@@ -3,9 +3,18 @@ package pl.coderslab.model;
 public class PlanDetails {
     private int id;
     private String dayName;
+    private int recipePlanId;
     private String mealName;
     private String recipeName;
     private String recipeDescription;
+
+    public int getRecipePlanId() {
+        return recipePlanId;
+    }
+
+    public void setRecipePlanId(int recipePlanId) {
+        this.recipePlanId = recipePlanId;
+    }
 
     public PlanDetails() {
 

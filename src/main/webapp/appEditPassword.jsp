@@ -13,12 +13,9 @@
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="m-4 border-dashed view-height">
                 <div class="mt-4 ml-4 mr-4">
-
                     <!-- fix action, method -->
                     <!-- add name attribute for all inputs -->
                     <form action="<c:url value="/app/password/edit"/>" method="post">
-
-
                         <div class="row border-bottom border-3">
                             <div class="col"><h3 class="color-header text-uppercase">Zmień hasło</h3></div>
                             <div class="col d-flex justify-content-end mb-2">
@@ -26,7 +23,6 @@
                                 </button>
                             </div>
                         </div>
-
                         <div style="position: relative; margin-top: 20px">
                             <c:if test="${delete != null}">
                                 <div class="center; alert-info" style="position:relative; top:20px; margin-bottom: 40px; text-align: center; color: red">
@@ -43,13 +39,13 @@
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2"><h4>Nowe hasło</h4></th>
                                     <td class="col-7">
-                                        <input class="w-100 p-1" name ="password" id ="password" value="" type="password" required>
+                                        <input class="w-100 p-1" name ="password" id ="password" value="" type="password" required="required" pattern=".*\S+">
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2"><h4>Powtórz hasło</h4></th>
                                     <td class="col-7">
-                                        <input class="w-100 p-1"name ="repeatPassword" id ="repeatPassword" value="" type="password" required>
+                                        <input class="w-100 p-1"name ="repeatPassword" id ="repeatPassword" value="" type="password" required="required" pattern=".*\S+">
                                     </td>
                                 </tr>
                                 </tbody>

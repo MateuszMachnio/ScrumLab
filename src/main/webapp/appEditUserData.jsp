@@ -34,13 +34,13 @@
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Imię</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" type="text" name="userFirstName" id="userFirstName" value="${user.firstName}" required>
+                                    <input class="w-100 p-1" type="text" name="userFirstName" id="userFirstName" pattern="[A-Za-z]+.*"  value="${user.firstName}" required>
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" type="text" name="userLastName" id="userLastName" value="${user.lastName}" required>
+                                    <input class="w-100 p-1" type="text" name="userLastName" id="userLastName" pattern="[A-Za-z]+.*"  value="${user.lastName}" required>
                                 </td>
                             </tr>
                             <tr class="d-flex">

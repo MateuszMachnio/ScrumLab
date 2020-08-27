@@ -15,23 +15,30 @@
                 <form class="padding-small text-center" action="<c:url value="/register"/>" method="post">
                     <h1 class="text-color-darker">Rejestracja</h1>
                     <div class="form-group">
-                        <label for="name"></label><input type="text" class="form-control" id="name" name="name"
+                        <label for="name"></label>
+                        <input type="text" class="form-control" id="name" name="name" required ="required" pattern="[A-Za-z]+.*"
                                                          placeholder="podaj imię">
                     </div>
                     <div class="form-group">
-                        <label for="surname"></label><input type="text" class="form-control" id="surname" name="surname"
+                        <label for="surname"></label>
+                        <input type="text" class="form-control" id="surname" name="surname" required ="required" pattern="[A-Za-z]+.*"
                                                             placeholder="podaj nazwisko">
                     </div>
                     <div class="form-group">
-                        <label for="email"></label><input type="email" class="form-control" id="email" name="email"
+                        <label for="email"></label>
+                        <input type="email" class="form-control" id="email" name="email"
                                                           placeholder="podaj email">
                     </div>
                     <div class="form-group">
-                        <label for="password"></label><input type="password" class="form-control" id="password"
+                        <label for="password">
+
+                        </label><input type="password" class="form-control" id="password"  required
                                                              name="password" placeholder="podaj hasło">
                     </div>
                     <div class="form-group">
-                        <label for="repassword"></label><input type="password" class="form-control" id="repassword"
+                        <label for="repassword">
+
+                        </label><input type="password" class="form-control" id="repassword" required
                                                                name="repassword" placeholder="powtórz hasło">
                     </div>
                     <button class="btn btn-color rounded-0" type="submit">Zarejestruj</button>
