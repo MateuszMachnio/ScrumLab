@@ -8,11 +8,11 @@ public class PlanDetails {
     private String recipeName;
     private String recipeDescription;
 
-    public int getRecipePlanId(int recipe_plan_id) {
+    public int getRecipePlanId() {
         return recipePlanId;
     }
 
-    public void setRecipePlanId(int planRecipeId) {
+    public void setRecipePlanId(int recipePlanId) {
         this.recipePlanId = recipePlanId;
     }
 
