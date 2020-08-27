@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "AppUpdateRecipe",value = "/app/recipe/edit")
-public class AppUpdateRecipe extends HttpServlet {
+@WebServlet(name = "AddRecipeFromAllRecipesList", value = "/app/recipe/add/copy")
+public class AppCopyRecipeFromAllRecipesList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");
@@ -20,21 +22,33 @@ public class AppUpdateRecipe extends HttpServlet {
         int preparationTime = Integer.parseInt(request.getParameter("preparationTime"));
         String preparation = request.getParameter("preparation");
         String ingredients = request.getParameter("ingredients");
-        int id = Integer.parseInt(request.getParameter("recipeId"));
         HttpSession session = request.getSession();
         int userId = (int) session.getAttribute("loggedUser");
         Recipe recipe = new Recipe(name,ingredients,description,preparationTime,preparation,userId);
-        recipe.setID(id);
-        System.out.println(id);
         RecipeDao recipeDao = new RecipeDao();
-        recipeDao.update(recipe);
-        response.sendRedirect("/app/recipe/list");
+        List<Recipe>allRecipes=recipeDao.findAll();
+        List<Recipe>userRecipes=new ArrayList<>();
+        for (Recipe recipeFromBase:allRecipes) {
+            if (recipeFromBase.getAdminId() == userId) {
+                userRecipes.add(recipeFromBase);
+            }
+        }
+        if (!userRecipes.contains(recipe)) {
+            recipeDao.create(recipe);
+            response.sendRedirect("/app/recipe/list");
+
+        } else {
+            response.sendRedirect("/appDoubleRecipe.jsp");
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recipeId = request.getParameter("recipeId");
-        RecipeDao recipeDao = new RecipeDao();
-        request.setAttribute("recipe", recipeDao.read(Integer.parseInt(recipeId)));
-        getServletContext().getRequestDispatcher("/appEditRecipe.jsp").forward(request,response);
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
+        RecipeDao recipeDao=new RecipeDao();
+        Recipe recipe=recipeDao.read(recipeId);
+        request.setAttribute("recipe", recipe);
+        getServletContext().getRequestDispatcher("/appCopyRecipeFromAllRecipesList.jsp").forward(request, response);
+
     }
 }
