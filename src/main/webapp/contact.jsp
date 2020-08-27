@@ -7,20 +7,20 @@
 <%@include file="WEB-INF/header.jspf" %>
 <section class="padding-medium story bg-light" id="about">
     <div class="container d-flex justify-content-center align-items-center">
-        <div class="row">
+        <div class="column">
             <div class="col-4 mr-4">
                 <div class="div-img">
                 </div>
             </div>
-            <div class="col-7 ml-4">
+            <div  class="col-7 ml-4">
                 <h1 class="pb-1">Kontakt z nami</h1>
-                <p>"${dataInfo.companyName}"
+                <p class="color-header text-uppercase>">${dataInfo.companyName}
                 </p>
-                <p>"${dataInfo.companyAdress}"
+                <p class="color-header text-uppercase">${dataInfo.companyAdress}
                 </p>
-                <p>"${dataInfo.companyEmail}"
+                <p class="color-header text-uppercase>">${dataInfo.companyEmail}
                 </p>
-                <p>"${dataInfo.companyPhone}"
+                <p class="color-header text-uppercase>">${dataInfo.companyPhone}
                 </p>
             </div>
         </div>

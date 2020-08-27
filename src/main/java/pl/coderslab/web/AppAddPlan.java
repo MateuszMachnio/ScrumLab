@@ -18,7 +18,7 @@ public class AppAddPlan extends HttpServlet {
 
         String planName = request.getParameter("planName");
         String planDescription = request.getParameter("planDescription");
-        if (planName.equals("") || planDescription.equals("")) {
+        if (planName.equals(" ") || planDescription.equals(" ")) {
             response.sendRedirect("/appNoDataAddPlan.jsp");
             return;
         }
