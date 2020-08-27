@@ -33,38 +33,28 @@
                         </tr>
                         </thead>
                         <tbody class="text-color-lighter">
+                        <c:forEach var="user" items="${userList}">
                         <tr class="d-flex">
-                            <td class="col-1">1</td>
-                            <td class="col-3">Marek</td>
-                            <td class="col-6">Marecki</td>
+                            <td class="col-1">${user.id}</td>
+                            <td class="col-3">${user.firstName}</td>
+                            <td class="col-6">${user.lastName}</td>
                             <td class="col-2 center">
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
+                                <c:choose>
+                                    <c:when test="${user.enable==1}">
+                                        <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="#" class="btn btn-success rounded-0 text-light m-1">Odblokuj</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                         </tr>
-                        <tr class="d-flex">
-                            <td class="col-1">2</td>
-                            <td class="col-3">Marek</td>
-                            <td class="col-6">Marecki</td>
-                            <td class="col-2 center">
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
-                            </td>
-                        </tr>
-                        <tr class="d-flex">
-                            <td class="col-1">3</td>
-                            <td class="col-3">Marek</td>
-                            <td class="col-6">Marecki</td>
-                            <td class="col-2 center">
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
+                        </c:forEach>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<%@include file="WEB-INF/footer.jspf" %>
+<%--<%@include file="WEB-INF/footer.jspf" %>--%>
 </body>
 </html>

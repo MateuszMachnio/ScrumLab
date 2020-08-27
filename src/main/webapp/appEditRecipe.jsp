@@ -45,7 +45,7 @@
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Przygotowanie (minuty)</th>
                                 <td class="col-3">
-                                    <input class="p-1" name="preparationTime" id="preparationTime" type="number"
+                                    <input class="p-1" name="preparationTime" id="preparationTime" type="number" min="0" step="1"
                                            value="${recipe.preparationTime}"
                                            required>
                                 </td>

@@ -18,7 +18,20 @@
                 request.setAttribute("superadmin", superadmin);
             %>${name}</h4>
 
-            <a href="/logout"><div onclick="" class="circle-div text-center"><i class="fas fa-user icon-user"></i></div></a>
+            <c:choose>
+                <c:when test="${superadmin==1}">
+                    <a href="/logout">
+                        <div class="circle-div text-center" style="border-color: #007bff; background-color: #EAEAEA"><i class="fas fa-user icon-user"
+                                                                          style="color: #007bff"></i></div>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/logout">
+                        <div onclick="" class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
+                    </a>
+
+                </c:otherwise>
+            </c:choose>
         </div>
     </nav>
 </header>

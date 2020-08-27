@@ -1,15 +1,10 @@
 package pl.coderslab.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
+public class Recipe {
+    private int ID, preparationTime, adminId;
+    private String name, ingredients, description, created, updated, preparation;
 
-public class Recipe   {
-    private int ID,preparationTime,adminId;
-    private String name, ingredients, description, created,updated, preparation;
-
-    public Recipe(String name, String ingredients, String description, String created,String updated, int preparationTime,String preparation,int adminId) {
+    public Recipe(String name, String ingredients, String description, String created, String updated, int preparationTime, String preparation, int adminId) {
         this.preparation = preparation;
         this.adminId = adminId;
         this.name = name;
@@ -20,13 +15,14 @@ public class Recipe   {
         this.updated = updated;
     }
 
-    public Recipe(int ID, String name, String description){
-        this.ID =ID;
+    public Recipe(int ID, String name, String description) {
+        this.ID = ID;
         this.name = name;
         this.description = description;
 
     }
-    public Recipe(String name, String ingredients, String description,int preparationTime,String preparation,int adminId) {
+
+    public Recipe(String name, String ingredients, String description, int preparationTime, String preparation, int adminId) {
         this.preparation = preparation;
         this.adminId = adminId;
         this.name = name;
@@ -126,5 +122,13 @@ public class Recipe   {
                 '}';
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj instanceof Recipe) {
+            Recipe r = (Recipe) obj;
+            return r.name.toLowerCase().replaceAll("\\s", "").equals(this.name.toLowerCase().replaceAll("\\s", "")) && r.description.toLowerCase().replaceAll("\\s", "").equals(this.description.toLowerCase().replaceAll("\\s", "")) && r.ingredients.toLowerCase().replaceAll("\\s", "").equals(this.ingredients.toLowerCase().replaceAll("\\s", ""));
+        }
+        return false;
+    }
 }
