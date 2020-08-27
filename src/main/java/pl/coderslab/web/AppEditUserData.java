@@ -21,7 +21,7 @@ public class AppEditUserData extends HttpServlet {
         String userEmail = request.getParameter("userEmail");
         AdminsDao adminsDao = new AdminsDao();
         Admins user = adminsDao.read(loggedUser);
-        if (userFirstName.matches("[\\s]+") || userLastName.matches("[\\s]+") || userEmail.matches("[\\s]+")) {
+        if (!userFirstName.matches("[a-zA-Z+\\s*]+") || !userLastName.matches("[(a-zA-Z)+\\s*]+")) {
             request.setAttribute("noData", 0);
             request.setAttribute("user", user);
             getServletContext().getRequestDispatcher("/appEditUserData.jsp").forward(request,response);
