@@ -16,13 +16,12 @@
                     <form>
                         <div class="row border-bottom border-3">
                             <div align="center" class="col">
-                                <h3 class="color-header text-uppercase">Czy na pewno usunąć każdy "${recipe.name}" z
-                                    planu "${plan.name}"?</h3>
+                                <h3 class="color-header text-uppercase">Czy na pewno usunąć posiłek "${recipe.name}"?</h3>
                             </div>
                         </div>
                         <div class="center" style="position:relative; top:70px">
                             <button type="submit"
-                                    formaction="/app/plan/delete/recipe?planId=${planId}&recipeId=${recipeId}"
+                                    formaction="/app/plan/delete/dish?recipe_planId=${recipePlanId}"
                                     formmethod="post"
                                     class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Usuń
                             </button>
