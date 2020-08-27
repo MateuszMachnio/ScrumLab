@@ -16,7 +16,7 @@
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
                 <form action="<c:url value="/app/recipe/edit"/>" method="post">
-                    <input type="hidden" name="recipeId" required = "required" pattern="[A-Za-z]+[!.,:;\/?]*" value="${recipe.ID}" >
+                    <input type="hidden" name="recipeId" required = "required" pattern="[A-Za-z]+.*" value="${recipe.ID}" >
                     <div class="mt-4 ml-4 mr-4">
                         <div class="row border-bottom border-3">
                             <div class="col"><h3 class="color-header text-uppercase">Edycja przepisu: ${recipe.name}</h3></div>
@@ -32,13 +32,13 @@
                                 <th scope="row" class="col-2">Nazwa Przepisu</th>
                                 <td class="col-7">
 
-                                    <input name="name" id="name" class="w-100 p-1" value="${recipe.name}" required = "required" pattern="[A-Za-z]+[!.,:;\/?]*">
+                                    <input name="name" id="name" class="w-100 p-1" value="${recipe.name}" required = "required" pattern="[A-Za-z]+.*">
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Opis przepisu</th>
                                 <td class="col-7"><textarea name="description" id="description" class="w-100 p-1"
-                                                            required = "required" pattern=".*\S+"   rows="5" >
+                                                            required = "required" pattern="[A-Za-z]+.*"   rows="5" >
                                                           ${recipe.description} </textarea>
                                 </td>
                             </tr>
@@ -62,13 +62,13 @@
                         <div class="row d-flex">
                             <div class="col-5 p-4">
                                 <textarea name="preparation" id="preparation" class="w-100 p-1" rows="10"
-                                          required = "required" pattern=".*\S+">${recipe.preparation}</textarea>
+                                          required = "required" pattern="[A-Za-z]+.*">${recipe.preparation}</textarea>
                             </div>
                             <div class="col-2"></div>
 
                             <div class="col-5 p-4">
                                 <textarea name="ingredients" id="ingredients" class="w-100 p-1" rows="10"
-                                          required = "required" pattern=".*\S+">${recipe.ingredients}</textarea>
+                                          required = "required" pattern="[A-Za-z]+.*">${recipe.ingredients}</textarea>
                             </div>
                         </div>
                     </div>
