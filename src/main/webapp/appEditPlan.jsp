@@ -15,7 +15,7 @@
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
                 <form action="<c:url value="/app/plan/edit"/>" method="post">
-                    <input type="hidden" name="planId" required = "required" pattern="[A-Za-z]+.*" >
+                    <input type="hidden" name="planId" value="${plan.id}" required = "required" pattern="[A-Za-z]+.*" >
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
                             <h3 class="color-header text-uppercase">EDYCJA PLANU: ${plan.name}</h3>
