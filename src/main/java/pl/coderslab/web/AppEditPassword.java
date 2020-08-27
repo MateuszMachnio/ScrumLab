@@ -15,11 +15,14 @@ import java.io.IOException;
 public class AppEditPassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession ses = request.getSession();
-       int adminId =(int)ses.getAttribute("loggedUser");
+        int adminId =(int)ses.getAttribute("loggedUser");
         String newPassword = request.getParameter("password");
         String repeatPassword = request.getParameter("repeatPassword");
         if(!newPassword.equals(repeatPassword)){
             request.setAttribute("delete", 0);
+            getServletContext().getRequestDispatcher("/appEditPassword.jsp").forward(request,response);
+        } else if (newPassword.matches("[\\s]+")) {
+            request.setAttribute("noData", 0);
             getServletContext().getRequestDispatcher("/appEditPassword.jsp").forward(request,response);
         } else {
             AdminsDao adminsDao = new AdminsDao();

@@ -23,28 +23,35 @@
                             </div>
                         </div>
 
+                        <div style="position: relative; margin-top: 20px">
+                            <c:if test="${noData != null}">
+                                <div class="center; alert-info" style="position:relative; top:20px; margin-bottom: 40px; text-align: center; color: red">
+                                    <h4>Białe znaki niedozwolone!</h4>
+                                </div>
+                            </c:if>
                         <table class="table borderless">
                             <tbody>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Imię</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" name="userFirstName" id="userFirstName" required ="required" pattern="[A-Za-z]+.*"  value="${user.firstName}" required>
+                                    <input class="w-100 p-1" type="text" name="userFirstName" id="userFirstName" pattern="[A-Za-z]+.*"  value="${user.firstName}" required>
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" name="userLastName" id="userLastName" required="required" pattern="[A-Za-z]+.*"  value="${user.lastName}" required>
+                                    <input class="w-100 p-1" type="text" name="userLastName" id="userLastName" pattern="[A-Za-z]+.*"  value="${user.lastName}" required>
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Email</h4></th>
                                 <td class="col-3">
-                                    <input class="p-1 w-100" type="email" name="userEmail" id="userEmail"   value="${user.email}" required>
+                                    <input class="p-1 w-100" type="email" name="userEmail" id="userEmail" value="${user.email}" required>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </form>
             </div>
