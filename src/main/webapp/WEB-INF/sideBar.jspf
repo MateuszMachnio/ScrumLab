@@ -34,7 +34,7 @@
     </li>
     <c:if test="${superadmin==1}">
         <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/superAdmin/users"/>">
+            <a class="nav-link" href="<c:url value="/app/superAdmin/users"/>">
                 <span>Użytkownicy</span>
                 <i class="fas fa-angle-right"></i>
             </a>

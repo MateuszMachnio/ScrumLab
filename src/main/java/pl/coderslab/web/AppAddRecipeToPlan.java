@@ -1,14 +1,7 @@
 package pl.coderslab.web;
 
-import pl.coderslab.dao.AdminsDao;
-import pl.coderslab.dao.DayNameDao;
-import pl.coderslab.dao.PlanDao;
-import pl.coderslab.dao.RecipeDao;
-import pl.coderslab.model.Admins;
-import pl.coderslab.model.DayName;
-import pl.coderslab.model.Plan;
-import pl.coderslab.model.Recipe;
-import pl.coderslab.utils.DbUtil;
+import pl.coderslab.dao.*;
+import pl.coderslab.model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,24 +19,17 @@ public class AppAddRecipeToPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;UTF-8");
-        final String  ADD_RECIPE_TO_PLAN_QUERY = "INSERT INTO recipe_plan (recipe_id, meal_name, display_order, day_name_id, plan_id) VALUES (?,?,?,?,?);";
-        int planId = Integer.parseInt(request.getParameter("choosePlan"));
-        String name = request.getParameter("name");
-        int displayOrder = Integer.parseInt(request.getParameter("displayOrder"));
-        int recipeID = Integer.parseInt(request.getParameter("recipe"));
-        int dayId = Integer.parseInt(request.getParameter("day"));
-        try (Connection connection = DbUtil.getConnection();
-             PreparedStatement addRecipeToPlan = connection.prepareStatement(ADD_RECIPE_TO_PLAN_QUERY)) {
-            addRecipeToPlan.setInt(1, recipeID);
-            addRecipeToPlan.setString(2, name);
-            addRecipeToPlan.setInt(3, displayOrder);
-            addRecipeToPlan.setInt(4, dayId);
-            addRecipeToPlan.setInt(5, planId);
-            addRecipeToPlan.executeUpdate();
-            System.out.println("Recipe was added to plan");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        RecipePlanDao rcd = new RecipePlanDao();
+        RecipePlan recipePlan = new RecipePlan();
+        recipePlan.setPlanId(Integer.parseInt(request.getParameter("choosePlan")));
+        recipePlan.setRecipeId(Integer.parseInt(request.getParameter("recipe")));
+        recipePlan.setMealName(request.getParameter("name"));
+        recipePlan.setDisplayOrder(Integer.parseInt(request.getParameter("displayOrder")));
+        recipePlan.setDayNameId(Integer.parseInt(request.getParameter("day")));
+        rcd.create(recipePlan);
+
+//        int recipePlanId=rcd.readId(recipePlan.getRecipeId(), recipePlan.getMealName(), recipePlan.getDisplayOrder(), recipePlan.getDayNameId(), recipePlan.getPlanId());
+//        System.out.println(recipePlanId);
         response.sendRedirect("/appAddNextRecipeToPlan.jsp");
     }
 
@@ -68,12 +52,11 @@ public class AppAddRecipeToPlan extends HttpServlet {
             }
         }
         if (recipeList.isEmpty()) {
-            getServletContext().getRequestDispatcher("/appEmptyRecipes.jsp").forward(request,response);
+            getServletContext().getRequestDispatcher("/appEmptyRecipes.jsp").forward(request, response);
         } else {
             recipeList.sort(Comparator.comparing(Recipe::getCreated).reversed());
             request.setAttribute("recipeList", recipeList);
         }
-
 
         //wysyłamy posortowana liste planów użytkownika
         List<Plan> plans = planDao.findAll();

@@ -13,7 +13,8 @@
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="m-4 border-dashed view-height">
 
-                <form action="/app/userData/edit" method="post">
+                <form action="/app/superAdmin/edit/user" method="post">
+                    <input type="hidden" name="userId" value="${user.id}">
                     <div class="mt-4 ml-4 mr-4">
                         <div class="row border-bottom border-3">
                             <div class="col"><h3 class="color-header text-uppercase">Edytuj dane</h3></div>
@@ -29,28 +30,28 @@
                                     <h4>Białe znaki niedozwolone!</h4>
                                 </div>
                             </c:if>
-                        <table class="table borderless">
-                            <tbody>
-                            <tr class="d-flex">
-                                <th scope="row" class="col-2"><h4>Imię</h4></th>
-                                <td class="col-7">
-                                    <input class="w-100 p-1" type="text" name="userFirstName" id="userFirstName" pattern="[A-Za-z]+.*"  value="${user.firstName}" required>
-                                </td>
-                            </tr>
-                            <tr class="d-flex">
-                                <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
-                                <td class="col-7">
-                                    <input class="w-100 p-1" type="text" name="userLastName" id="userLastName" pattern="[A-Za-z]+.*"  value="${user.lastName}" required>
-                                </td>
-                            </tr>
-                            <tr class="d-flex">
-                                <th scope="row" class="col-2"><h4>Email</h4></th>
-                                <td class="col-3">
-                                    <input class="p-1 w-100" type="email" name="userEmail" id="userEmail" value="${user.email}" required>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <table class="table borderless">
+                                <tbody>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2"><h4>Imię</h4></th>
+                                    <td class="col-7">
+                                        <input class="w-100 p-1" type="text" name="userFirstName" id="userFirstName" pattern="[A-Za-z]+.*"  value="${user.firstName}" required>
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
+                                    <td class="col-7">
+                                        <input class="w-100 p-1" type="text" name="userLastName" id="userLastName" pattern="[A-Za-z]+.*"  value="${user.lastName}" required>
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2"><h4>Email</h4></th>
+                                    <td class="col-3">
+                                        <input class="p-1 w-100" type="email" name="userEmail" id="userEmail" value="${user.email}" required>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </form>

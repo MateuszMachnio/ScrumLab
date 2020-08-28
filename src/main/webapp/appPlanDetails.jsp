@@ -60,11 +60,14 @@
                             </thead>
                             <tbody class="text-color-lighter">
                             <c:forEach items="${planDetails.get(day)}" var="details">
-                                <tr class="d-flex">
+                                <tr class="col-10 d-flex">
                                     <td class="col-2">${details.mealName}</td>
                                     <td class="col-7">${details.recipeName}</td>
-                                    <td class="col-1 center">
-                                        <a href="/app/plan/delete/recipe?planId=${planId}&recipeId=${details.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                    <td class="col-2 center">
+                                        <a href="/app/plan/delete/dish?recipePlanId=${details.recipePlanId}&planId=${planId}&recipeId=${details.id}&mealName=${details.mealName}" class="btn btn-warning rounded-0 text-light m-1">Usuń posiłek</a>
+                                    </td>
+                                    <td class="col-2 center">
+                                        <a href="/app/plan/delete/recipe?planId=${planId}&recipeId=${details.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń przepis z planu</a>
                                     </td>
                                     <td class="col-2 center">
                                         <a href="/app/recipe/details?planId=${planId}&from=plan&recipeId=${details.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>

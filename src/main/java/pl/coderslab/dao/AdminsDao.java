@@ -15,7 +15,7 @@ public class AdminsDao {
     private static final String READ_ADMINS_QUERY = "SELECT * FROM admins WHERE id = ?";
     private static final String READ_ADMINS_BY_EMAIL_QUERY = "SELECT * FROM admins WHERE email = ?";
     private static final String UPDATE_ADMINS_QUERY = "UPDATE admins SET first_name = ?, last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
-    private static final String UPDATE_USER_QUERY = "UPDATE admins SET first_name = ?, last_name = ?, email = ? WHERE id = ?;";
+//    private static final String UPDATE_USER_QUERY = "UPDATE admins SET first_name = ?, last_name = ?, email = ? WHERE id = ?;";
     private static final String DELETE_ADMINS_QUERY = "DELETE FROM admins WHERE id = ?";
     private static final String FIND_ALL_ADMINS_QUERY = "SELECT * FROM admins";
 
@@ -100,7 +100,12 @@ public class AdminsDao {
             statement.setString(1, admins.getFirstName());
             statement.setString(2, admins.getLastName());
             statement.setString(3, admins.getEmail());
-            statement.setString(4, hashPassword(admins.getPassword()));
+            Admins admin = read(admins.getId());
+            if (!admin.getPassword().equals(admins.getPassword())) {
+                statement.setString(4, hashPassword(admins.getPassword()));
+            } else {
+                statement.setString(4, admin.getPassword());
+            }
             statement.setInt(5, admins.getSuperadmin());
             statement.setInt(6, admins.getEnable());
             statement.setInt(7, admins.getId());
@@ -109,19 +114,20 @@ public class AdminsDao {
             e.printStackTrace();
         }
     }
-    public void updateUser(String firstName, String lastname, String email, int id) {
-        try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);
-            statement.setString(1, firstName);
-            statement.setString(2, lastname);
-            statement.setString(3, email);
-            statement.setInt(4, id);
-            statement.executeUpdate();
-            System.out.println("UserData was changed successful");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
+//    public void updateUser(String firstName, String lastname, String email, int id) {
+//        try (Connection conn = DbUtil.getConnection()) {
+//            PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);
+//            statement.setString(1, firstName);
+//            statement.setString(2, lastname);
+//            statement.setString(3, email);
+//            statement.setInt(4, id);
+//            statement.executeUpdate();
+//            System.out.println("UserData was changed successful");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void delete(int userId) {
         try (Connection connection = DbUtil.getConnection()) {

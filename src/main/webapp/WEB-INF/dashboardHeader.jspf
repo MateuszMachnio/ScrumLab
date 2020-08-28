@@ -11,12 +11,11 @@
             <h4 class="text-light mr-3"><%
                 HttpSession sessionName = request.getSession();
                 AdminsDao adminsDao = new AdminsDao();
-                Admins user = adminsDao.read((Integer) sessionName.getAttribute("loggedUser"));
-                String name = user.getFirstName();
-                request.setAttribute("name", name);
-                int superadmin = user.getSuperadmin();
+                Admins admin = adminsDao.read((Integer) sessionName.getAttribute("loggedUser"));
+                request.setAttribute("admin", admin);
+                int superadmin = admin.getSuperadmin();
                 request.setAttribute("superadmin", superadmin);
-            %>${name}</h4>
+            %>${admin.firstName}</h4>
 
             <c:choose>
                 <c:when test="${superadmin==1}">

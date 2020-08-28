@@ -14,11 +14,11 @@
                     <h1 class="text-color-darker">Logowanie</h1>
                     <div class="form-group">
                         <input type="email" class="form-control" id="email" name="email"
-                               placeholder="podaj adres email">
+                               placeholder="podaj adres email" required>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="password" name="password"
-                               placeholder="podaj hasło">
+                               placeholder="podaj hasło" required>
                     </div>
                     <button class="btn btn-color rounded-0" type="submit">Zaloguj</button>
                 </form>
