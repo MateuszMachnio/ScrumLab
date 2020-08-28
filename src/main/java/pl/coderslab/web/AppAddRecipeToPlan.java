@@ -28,7 +28,7 @@ public class AppAddRecipeToPlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;UTF-8");
-        String ADD_RECIPE_TO_PLAN_QUERY = "INSERT INTO recipe_plan (recipe_id, meal_name, display_order, day_name_id, plan_id) VALUES (?,?,?,?,?);";
+        final String  ADD_RECIPE_TO_PLAN_QUERY = "INSERT INTO recipe_plan (recipe_id, meal_name, display_order, day_name_id, plan_id) VALUES (?,?,?,?,?);";
         int planId = Integer.parseInt(request.getParameter("choosePlan"));
         String name = request.getParameter("name");
         int displayOrder = Integer.parseInt(request.getParameter("displayOrder"));
@@ -86,7 +86,6 @@ public class AppAddRecipeToPlan extends HttpServlet {
         }
         if (planList.isEmpty()) {
             getServletContext().getRequestDispatcher("/appEmptyPlans.jsp").forward(request, response);
-//            response.sendRedirect("/appEmptyRecipes.jsp");
         } else {
             planList.sort(Comparator.comparing(Plan::getCreated).reversed());
             request.setAttribute("planList", planList);
