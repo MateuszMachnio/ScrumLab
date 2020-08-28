@@ -24,13 +24,27 @@
 
                 <div class="schedules-content">
                     <c:if test="${block != null}">
-                        <div class="center; alert-info" style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
+                        <div class="center; alert-info"
+                             style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
                             <h4>Użytkownik został zablokowany</h4>
                         </div>
                     </c:if>
                     <c:if test="${unlock != null}">
-                        <div class="center; alert-info" style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
+                        <div class="center; alert-info"
+                             style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
                             <h4>Użytkownik został odblokowany</h4>
+                        </div>
+                    </c:if>
+                    <c:if test="${admin != null}">
+                        <div class="center; alert-info"
+                             style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
+                            <h4>Użytkownik otrzymał uprawnienia administratora</h4>
+                        </div>
+                    </c:if>
+                    <c:if test="${notAdmin != null}">
+                        <div class="center; alert-info"
+                             style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
+                            <h4>Użytkownikowi odebrano uprawnienia administratora</h4>
                         </div>
                     </c:if>
                     <table class="table">
@@ -38,27 +52,46 @@
                         <tr class="d-flex">
                             <th class="col-1">ID</th>
                             <th class="col-3">IMIĘ</th>
-                            <th class="col-6">NAZWISKO</th>
-                            <th class="col-2 center">AKCJE</th>
+                            <th class="col-5">NAZWISKO</th>
+                            <th class="col-2">AKCJE</th>
                         </tr>
                         </thead>
                         <tbody class="text-color-lighter">
                         <c:forEach var="user" items="${userList}">
-                        <tr class="d-flex" style="height: 70px">
-                            <th class="col-1" style="padding-top: 23px;">${user.id}</th>
-                            <td class="col-3" style="padding-top: 23px;">${user.firstName}</td>
-                            <td class="col-6" style="padding-top: 23px;">${user.lastName}</td>
-                            <td class="col-2 center">
-                                <c:choose>
-                                    <c:when test="${user.enable==1 && user.superadmin!=1}">
-                                        <a href="<c:url value="/superAdmin/block?userId=${user.id}"/>" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
-                                    </c:when>
-                                    <c:when test="${user.superadmin!=1}">
-                                        <a href="<c:url value="/superAdmin/unlock?userId=${user.id}"/>" class="btn btn-success rounded-0 text-light m-1">Odblokuj</a>
-                                    </c:when>
-                                </c:choose>
-                            </td>
-                        </tr>
+                            <tr class="d-flex" style="height: 70px">
+                                <th class="col-1" style="padding-top: 23px;">${user.id}</th>
+                                <td class="col-3" style="padding-top: 23px;">${user.firstName}</td>
+                                <td class="col-4" style="padding-top: 23px;">${user.lastName}</td>
+                                <td class="col-1">
+                                    <a href="<c:url value="/app/superAdmin/edit/user?userId=${user.id}"/>" class="btn btn-warning
+                                rounded-0 text-light m-1">Edytuj</a>
+                                </td>
+                                <td class="col-2 center">
+                                    <c:choose>
+                                        <c:when test="${user.superadmin==1}">
+                                            <a href="<c:url value="/app/superAdmin/degradation?userId=${user.id}"/>"
+                                               class="btn btn-danger
+                                rounded-0 text-dark m-1">Change to User</a> </c:when>
+                                        <c:otherwise>
+                                            <a href="<c:url value="/app/superAdmin/promotion?userId=${user.id}"/>"
+                                               class="btn btn-warning
+                                rounded-0 text-dark m-1">Promotion to Admin</a> </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td class="col-1 center">
+                                    <c:choose>
+                                        <c:when test="${user.enable==1 && user.superadmin!=1}">
+                                            <a href="<c:url value="/app/superAdmin/block?userId=${user.id}"/>"
+                                               class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
+                                        </c:when>
+                                        <c:when test="${user.superadmin!=1}">
+                                            <a href="<c:url value="/app/superAdmin/unlock?userId=${user.id}"/>"
+                                               class="btn btn-success rounded-0 text-light m-1">Odblokuj</a>
+                                        </c:when>
+                                    </c:choose>
+
+                                </td>
+                            </tr>
                         </c:forEach>
                         </tbody>
                     </table>
