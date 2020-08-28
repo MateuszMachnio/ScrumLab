@@ -19,11 +19,6 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (email.equals("") || password.equals("")) {
-            response.sendRedirect("/noDataLogin.jsp");
-            return;
-        }
-
         Admins user = adminsDao.readByEmail(email);
 //        System.out.println(user);
 

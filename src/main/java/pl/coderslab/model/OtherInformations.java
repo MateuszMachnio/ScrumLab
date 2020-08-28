@@ -1,11 +1,11 @@
 package pl.coderslab.model;
 
-public class otherInformations {
+public class OtherInformations {
 
     int id;
     String companyName, companyAdress,companyEmail,companyPhone,authors;
 
-    public otherInformations(int id, String companyName, String companyAdress, String companyEmail, String companyPhone, String authors) {
+    public OtherInformations(int id, String companyName, String companyAdress, String companyEmail, String companyPhone, String authors) {
         this.id = id;
         this.companyName = companyName;
         this.companyAdress = companyAdress;
@@ -14,7 +14,7 @@ public class otherInformations {
         this.authors = authors;
     }
 
-    public otherInformations() {
+    public OtherInformations() {
     }
 
     public int getId() {

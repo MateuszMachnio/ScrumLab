@@ -5,15 +5,16 @@
 <%@include file="WEB-INF/head.jspf" %>
 <body id="page-top">
 <%@include file="WEB-INF/header.jspf" %>
-<section class="padding-medium story bg-light" id="about">
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="column">
-            <div class="col-4 mr-4">
+<section class="dashboard-section">
+    <div class="container d-flex pt-4 pb-4 justify-content-center align-items-center">
+        <div class="border-dashed view-height">
+            <div class="col-4 mr-4" style="position: relative; margin: 25px; top: 10px">
                 <div class="div-img">
+                    <img src="<c:url value="/images/krolik.png"/>" style="width: 300px; height: 300px" alt="Tu powinien być królik"/>
                 </div>
             </div>
-            <div  class="col-7 ml-4">
-                <h1 class="pb-1">Kontakt z nami</h1>
+            <div  class="col-7 ml-4"; style="margin: 30px;">
+                <h1 class="pb-1" style="width: 300px">Kontakt z nami</h1>
                 <p class="color-header text-uppercase>">${dataInfo.companyName}
                 </p>
                 <p class="color-header text-uppercase">${dataInfo.companyAdress}

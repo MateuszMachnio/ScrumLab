@@ -18,8 +18,8 @@ public class AppSuperAdminUsers extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminsDao adminsDao=new AdminsDao();
-        List<Admins> userList=adminsDao.findAll();
+        AdminsDao adminsDao = new AdminsDao();
+        List<Admins> userList = adminsDao.findAll();
         request.setAttribute("userList", userList);
         getServletContext().getRequestDispatcher("/appSuperAdminUsers.jsp").forward(request, response);
     }
