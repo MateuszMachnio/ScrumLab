@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "AppEditUserData", value = "/app/userData/edit")
 public class AppEditUserData extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         int loggedUser = (Integer)session.getAttribute("loggedUser");
         String userFirstName = request.getParameter("userFirstName");
@@ -21,12 +22,12 @@ public class AppEditUserData extends HttpServlet {
         String userEmail = request.getParameter("userEmail");
         AdminsDao adminsDao = new AdminsDao();
         Admins user = adminsDao.read(loggedUser);
-        if (!userFirstName.matches("[A-Za-z]+") || !userLastName.matches("[A-Za-z]+")) {
+/*        if (!userFirstName.matches("[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+") || !userLastName.matches("[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+")) {
             request.setAttribute("noData", 0);
             request.setAttribute("user", user);
             getServletContext().getRequestDispatcher("/appEditUserData.jsp").forward(request,response);
             return;
-        }
+        }*/
         user.setFirstName(userFirstName);
         user.setLastName(userLastName);
         user.setEmail(userEmail);

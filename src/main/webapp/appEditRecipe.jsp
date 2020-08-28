@@ -32,13 +32,13 @@
                                 <th scope="row" class="col-2">Nazwa Przepisu</th>
                                 <td class="col-7">
 
-                                    <input name="name" id="name" class="w-100 p-1" value="${recipe.name}" required = "required" pattern="[A-Za-z]+.*">
+                                    <input name="name" id="name" class="w-100 p-1" value="${recipe.name}" required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*">
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Opis przepisu</th>
                                 <td class="col-7"><textarea name="description" id="description" class="w-100 p-1"
-                                                            required = "required" pattern="[A-Za-z]+.*"   rows="5" >
+                                                            required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*"   rows="5" >
                                                           ${recipe.description} </textarea>
                                 </td>
                             </tr>
@@ -62,13 +62,13 @@
                         <div class="row d-flex">
                             <div class="col-5 p-4">
                                 <textarea name="preparation" id="preparation" class="w-100 p-1" rows="10"
-                                          required = "required" pattern="[A-Za-z]+.*">${recipe.preparation}</textarea>
+                                          required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*">${recipe.preparation}</textarea>
                             </div>
                             <div class="col-2"></div>
 
                             <div class="col-5 p-4">
                                 <textarea name="ingredients" id="ingredients" class="w-100 p-1" rows="10"
-                                          required = "required" pattern="[A-Za-z]+.*">${recipe.ingredients}</textarea>
+                                          required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*">${recipe.ingredients}</textarea>
                             </div>
                         </div>
                     </div>

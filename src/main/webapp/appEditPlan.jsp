@@ -15,7 +15,7 @@
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
                 <form action="<c:url value="/app/plan/edit"/>" method="post">
-                    <input type="hidden" name="planId" value="${plan.id}" required = "required" pattern="[A-Za-z]+.*" >
+                    <input type="hidden" name="planId" value="${plan.id}" required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*" >
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
                             <h3 class="color-header text-uppercase">EDYCJA PLANU: ${plan.name}</h3>
@@ -32,7 +32,7 @@
                                 Nazwa planu
                             </label>
                             <div class="col-sm-10">
-                                <input class="form-control" value="${plan.name}" name ="planName" id="planName" placeholder="Nazwa planu" required = "required" pattern="[A-Za-z]+.*" >
+                                <input class="form-control" value="${plan.name}" name ="planName" id="planName" placeholder="Nazwa planu" required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*" >
                             </div>
                         </div>
                         <div class="form-group row">
@@ -40,7 +40,7 @@
                                 Opis planu
                             </label>
                             <div class="col-sm-10">
-                                    <textarea class="form-control" rows="5" name="planDescription" id="planDescription" required = "required" pattern="[A-Za-z]+.*"  placeholder="Opis plany">${plan.description}</textarea>
+                                    <textarea class="form-control" rows="5" name="planDescription" id="planDescription" required  pattern="[A-Za-z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+.*"  placeholder="Opis plany">${plan.description}</textarea>
                             </div>
                         </div>
 
