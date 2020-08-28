@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "AppUpdateRecipe",value = "/app/recipe/edit")
+@WebServlet(name = "AppUpdateRecipe", value = "/app/recipe/edit")
 public class AppUpdateRecipe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -23,18 +23,23 @@ public class AppUpdateRecipe extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("recipeId"));
         HttpSession session = request.getSession();
         int userId = (int) session.getAttribute("loggedUser");
-        Recipe recipe = new Recipe(name,ingredients,description,preparationTime,preparation,userId);
-        recipe.setID(id);
-        System.out.println(id);
+//        System.out.println(id);
         RecipeDao recipeDao = new RecipeDao();
-        recipeDao.update(recipe);
-        response.sendRedirect("/app/recipe/list");
+        Recipe recipeToUpdate = recipeDao.read(id);
+        if (userId != recipeToUpdate.getAdminId()) {
+            response.sendRedirect("/appProhibitedRemoval.jsp");
+        } else {
+            Recipe recipe = new Recipe(name, ingredients, description, preparationTime, preparation, userId);
+            recipe.setID(id);
+            recipeDao.update(recipe);
+            response.sendRedirect("/app/recipe/list");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String recipeId = request.getParameter("recipeId");
         RecipeDao recipeDao = new RecipeDao();
         request.setAttribute("recipe", recipeDao.read(Integer.parseInt(recipeId)));
-        getServletContext().getRequestDispatcher("/appEditRecipe.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/appEditRecipe.jsp").forward(request, response);
     }
 }
