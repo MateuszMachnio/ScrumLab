@@ -18,7 +18,7 @@
                             <div align="center" class="col">
                                 <h3 class="color-header text-uppercase">Czy na pewno chcesz się wylogować
                                     <%
-                                        request.setAttribute("login", user.getFirstName());
+                                        request.setAttribute("login", admin.getFirstName());
                                     %>
                                     ${login}?</h3>
                             </div>
