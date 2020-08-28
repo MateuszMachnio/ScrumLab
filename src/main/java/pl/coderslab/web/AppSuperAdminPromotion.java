@@ -23,6 +23,6 @@ public class AppSuperAdminPromotion extends HttpServlet {
         user.setSuperadmin(1);
         adminsDao.update(user);
         request.setAttribute("admin",1);
-        getServletContext().getRequestDispatcher("/superAdmin/users").forward(request, response);
+        getServletContext().getRequestDispatcher("/app/superAdmin/users").forward(request, response);
     }
 }

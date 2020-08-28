@@ -72,10 +72,10 @@
                                             <a href="<c:url value="/app/superAdmin/degradation?userId=${user.id}"/>"
                                                class="btn btn-danger
                                 rounded-0 text-dark m-1">Change to User</a> </c:when>
-                                        <c:otherwise>
+                                        <c:when test="${user.enable==1 && user.superadmin!=1}">
                                             <a href="<c:url value="/app/superAdmin/promotion?userId=${user.id}"/>"
                                                class="btn btn-warning
-                                rounded-0 text-dark m-1">Promotion to Admin</a> </c:otherwise>
+                                rounded-0 text-dark m-1">Promotion to Admin</a> </c:when>
                                     </c:choose>
                                 </td>
                                 <td class="col-1 center">

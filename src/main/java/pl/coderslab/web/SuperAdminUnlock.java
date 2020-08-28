@@ -23,6 +23,6 @@ public class SuperAdminUnlock extends HttpServlet {
         user.setEnable(1);
         adminsDao.update(user);
         request.setAttribute("unlock", 0);
-        getServletContext().getRequestDispatcher("/superAdmin/users").forward(request,response);
+        getServletContext().getRequestDispatcher("/app/superAdmin/users").forward(request,response);
     }
 }

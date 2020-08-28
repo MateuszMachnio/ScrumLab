@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SuperAdminUsers", value = "/superAdmin/users")
+@WebServlet(name = "SuperAdminUsers", value = "/app/superAdmin/users")
 public class AppSuperAdminUsers extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

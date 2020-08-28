@@ -23,6 +23,6 @@ public class SuperAdminBlock extends HttpServlet {
         user.setEnable(0);
         adminsDao.update(user);
         request.setAttribute("block", 0);
-        getServletContext().getRequestDispatcher("/superAdmin/users").forward(request,response);
+        getServletContext().getRequestDispatcher("/app/superAdmin/users").forward(request,response);
     }
 }

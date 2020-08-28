@@ -23,7 +23,7 @@ public class AppSuperAdminDegradation extends HttpServlet {
         user.setSuperadmin(0);
         adminsDao.update(user);
         request.setAttribute("notAdmin",1);
-        getServletContext().getRequestDispatcher("/superAdmin/users").forward(request, response);
+        getServletContext().getRequestDispatcher("/app/superAdmin/users").forward(request, response);
 
     }
 }
