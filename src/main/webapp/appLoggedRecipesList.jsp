@@ -10,10 +10,11 @@
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
         <%@include file="WEB-INF/sideBar.jspf" %>
+            <div class="m-4 p-4 width-medium">
         <section>
             <div class="row padding-small">
                 <i class="fas fa-users icon-users"></i>
-                <h1>Przepisy naszych użytkowników:</h1>
+                <h1>Przepisy wszystkich użytkowników:</h1>
                 <hr>
                 <div class="orange-line w-100"></div>
             </div>
@@ -58,7 +59,7 @@
                             <th scope="row" class="col-1">${recipe.ID}</th>
                             <td class="col-5">${recipe.name}</td>
                             <td class="col-5">${recipe.description}</td>
-                            <td class="col-1"><a href="<c:url value="/recipe/details?recipeId=${recipe.ID}"/>" class=" btn btn-info
+                            <td class="col-1"><a href="<c:url value="/app/recipe/details/allusers?recipeId=${recipe.ID}"/>" class=" btn btn-info
                                      rounded-0 text-light">Szczegóły</a></td>
                         </tr>
                     </c:forEach>
@@ -66,6 +67,7 @@
                 </table>
             </c:if>
         </section>
+            </div>
     </div>
 </section>
 <%@include file="WEB-INF/footer.jspf" %>
