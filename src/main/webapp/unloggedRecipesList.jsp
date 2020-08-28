@@ -25,7 +25,7 @@
             <h3 class="color-header text-uppercase">Wyszukaj przepis:</h3>
         </div>
         <div style="text-align:center; margin:0px 10px 10px 0px;" class="d-inline-block">
-            <input type="text" name="searchRecipe" id="search recipe" placeholder="Nazwa przepisu" size="50px" required>
+            <input type="text" name="searchRecipe" id="search recipe" placeholder="Nazwa przepisu" size="50px">
         </div>
         <div style="text-align:right; margin:0px auto 0px auto;" class="d-inline-block" >
             <button type="submit" class="btn btn-danger rounded-1 pt-1 pb-1 pr-4 pl-4">Wyszukaj

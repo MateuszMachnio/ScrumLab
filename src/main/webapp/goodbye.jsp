@@ -5,7 +5,7 @@
 <body>
 <%@include file="/WEB-INF/header.jspf" %>
 <div class="center; alert-info" style="position:relative; top:35px; text-align: center; color: red">
-    <h4>Użytkownik został poprawie wylogowany</h4>
+    <h4>Użytkownik został poprawnie wylogowany</h4>
 </div>
 
 <section class="padding-large bg-light">

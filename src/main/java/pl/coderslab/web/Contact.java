@@ -1,7 +1,6 @@
 package pl.coderslab.web;
 
-import pl.coderslab.dao.otherInformationsDao;
-
+import pl.coderslab.dao.OtherInformationsDao;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,7 @@ public class Contact extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        otherInformationsDao otherInformationsDao = new otherInformationsDao();
+        OtherInformationsDao otherInformationsDao = new OtherInformationsDao();
         request.setAttribute("dataInfo",otherInformationsDao.read(1));
         getServletContext().getRequestDispatcher("/contact.jsp").forward(request,response);
     }

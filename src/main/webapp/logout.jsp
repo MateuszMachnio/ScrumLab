@@ -18,11 +18,7 @@
                             <div align="center" class="col">
                                 <h3 class="color-header text-uppercase">Czy na pewno chcesz się wylogować
                                     <%
-                                        HttpSession sessionLogout= request.getSession();
-                                        AdminsDao ao = new AdminsDao();
-                                        Admins loggedUser = adminsDao.read((Integer) sessionName.getAttribute("loggedUser"));
-                                        String login = user.getFirstName();
-                                        request.setAttribute("login", login);
+                                        request.setAttribute("login", user.getFirstName());
                                     %>
                                     ${login}?</h3>
                             </div>

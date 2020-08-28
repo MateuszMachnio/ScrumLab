@@ -26,7 +26,7 @@
                         <div style="position: relative; margin-top: 20px">
                             <c:if test="${delete != null}">
                                 <div class="center; alert-info" style="position:relative; top:20px; margin-bottom: 40px; text-align: center; color: red">
-                                    <h4>Hasła nie są takie same, spróbuj jeszcze raz.</h4>
+                                    <h4>Hasła nie są takie same. Spróbuj jeszcze raz.</h4>
                                 </div>
                             </c:if>
                             <c:if test="${noData != null}">

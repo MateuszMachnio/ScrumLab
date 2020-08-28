@@ -22,7 +22,7 @@ public class UnloggedRecipesList extends HttpServlet {
         List<Recipe> recipes = recipeDao.findAll();
         List<Recipe> foundedRecipes = new ArrayList<>();
         for (Recipe recipe : recipes) {
-            if (recipe.getName().toLowerCase().replaceAll("\\s", "").contains(searchRecipe.toLowerCase().replaceAll("\\s", ""))) {
+            if (recipe.getName().toLowerCase().replaceAll("\\s", "").contains(searchRecipe.toLowerCase().replaceAll("\\s", "")) || searchRecipe.equals("")) {
                 if (!foundedRecipes.contains(recipe)) {
                     foundedRecipes.add(recipe);
                 }
