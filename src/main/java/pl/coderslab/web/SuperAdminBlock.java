@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "SuperAdminBlock", value = "/superAdmin/block")
+@WebServlet(name = "SuperAdminBlock", value = "/app/superAdmin/block")
 public class SuperAdminBlock extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -23,6 +23,6 @@ public class SuperAdminBlock extends HttpServlet {
         user.setEnable(0);
         adminsDao.update(user);
         request.setAttribute("block", 0);
-        getServletContext().getRequestDispatcher("/superAdmin/users").forward(request,response);
+        getServletContext().getRequestDispatcher("/app/superAdmin/users").forward(request,response);
     }
 }
