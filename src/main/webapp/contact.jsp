@@ -10,7 +10,7 @@
         <div class="border-dashed view-height">
             <div class="col-4 mr-4" style="position: relative; margin: 25px; top: 10px">
                 <div class="div-img">
-                    <img src="<c:url value="/images/krolik.png"/>" style="width: 300px; height: 300px" alt="Tu powinien być królik"/>
+                    <img src="<c:url value="/images/krolik.png"/>" style="width: 315px; height: 315px" alt="Tu powinien być królik"/>
                 </div>
             </div>
             <div  class="col-7 ml-4"; style="margin: 30px;">

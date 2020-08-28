@@ -35,7 +35,7 @@
                             <h4>Użytkownik został odblokowany</h4>
                         </div>
                     </c:if>
-                    <c:if test="${admin != null}">
+                    <c:if test="${adminUpdate != null}">
                         <div class="center; alert-info"
                              style="position:relative; top:10px; margin-bottom: 40px; text-align: center; color: red">
                             <h4>Użytkownik otrzymał uprawnienia administratora</h4>
@@ -53,7 +53,7 @@
                             <th class="col-1">ID</th>
                             <th class="col-3">IMIĘ</th>
                             <th class="col-5">NAZWISKO</th>
-                            <th class="col-2">AKCJE</th>
+                            <th class="col-3">AKCJE</th>
                         </tr>
                         </thead>
                         <tbody class="text-color-lighter">
@@ -61,24 +61,24 @@
                             <tr class="d-flex" style="height: 70px">
                                 <th class="col-1" style="padding-top: 23px;">${user.id}</th>
                                 <td class="col-3" style="padding-top: 23px;">${user.firstName}</td>
-                                <td class="col-4" style="padding-top: 23px;">${user.lastName}</td>
+                                <td class="col-3" style="padding-top: 23px;">${user.lastName}</td>
                                 <td class="col-1">
                                     <a href="<c:url value="/app/superAdmin/edit/user?userId=${user.id}"/>" class="btn btn-warning
                                 rounded-0 text-light m-1">Edytuj</a>
                                 </td>
-                                <td class="col-2 center">
+                                <td class="col-2 center" style="padding-left: 25px; padding-right: 25px">
                                     <c:choose>
-                                        <c:when test="${user.superadmin==1}">
+                                        <c:when test="${user.superadmin==1 && admin.id!=user.id}">
                                             <a href="<c:url value="/app/superAdmin/degradation?userId=${user.id}"/>"
                                                class="btn btn-danger
-                                rounded-0 text-dark m-1">Change to User</a> </c:when>
+                                rounded-0 text-dark m-1">Zmień na użytkownika</a> </c:when>
                                         <c:when test="${user.enable==1 && user.superadmin!=1}">
                                             <a href="<c:url value="/app/superAdmin/promotion?userId=${user.id}"/>"
                                                class="btn btn-warning
-                                rounded-0 text-dark m-1">Promotion to Admin</a> </c:when>
+                                rounded-0 text-dark m-1">Zmień na superadmina</a> </c:when>
                                     </c:choose>
                                 </td>
-                                <td class="col-1 center">
+                                <td class="col-2 center">
                                     <c:choose>
                                         <c:when test="${user.enable==1 && user.superadmin!=1}">
                                             <a href="<c:url value="/app/superAdmin/block?userId=${user.id}"/>"
@@ -89,7 +89,6 @@
                                                class="btn btn-success rounded-0 text-light m-1">Odblokuj</a>
                                         </c:when>
                                     </c:choose>
-
                                 </td>
                             </tr>
                         </c:forEach>
