@@ -9,7 +9,7 @@ The new user is asked to register, then can log in. \
 A logged in user can copy recipes that are in the recipe base of all users to his recipe database.
 
 A specific servlet is assigned to each user action. \
-It performs operations by using DAO classes with CRUD methods (which communicate with the database) and passes the data to be displayed to certain JSP files.
+It performs operations by using DAO classes with CRUD methods (which communicate with the database) and passes the data to be displayed to certain JSP files. \
 Superadmin has a different appearance of the application and also has an additional tab "users" in the sidebar where a list of all users is displayed.
 He can edit user data, promote them to superadmins, or demote other superadmins to regular users.
 Superadmin can also block and unblock users.
