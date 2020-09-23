@@ -1,45 +1,15 @@
-![Coders-Lab-1920px-no-background](https://user-images.githubusercontent.com/152855/73064373-5ed69780-3ea1-11ea-8a71-3d370a5e7dd8.png)
+# Scrum Lab
+It is a group project implemented after passing the third module of the course in CodersLab. \
+This project brings together various skills from __Java basics__, __OOP__ & __MySQL__ and Servlets.
+## What programme is that?
+It is a servlet based application. Thanks to it, the user can manage his weekly nutritional plans. \
+This is done through CRUD operations performed on plans and specific recipes.
+## How it works?
+The new user is asked to register, then can log in. \
+A logged in user can copy recipes that are in the recipe base of all users to his recipe database.
 
-
-### Przygotowanie – pliki css/js.
-
-Pliki **css** możemy umieścić w katalogu 
-````src/main/webapp/css````
-przy powyższej lokalizacji w plikach szablonów załączamy je w następujący sposób:
-````
-  <link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
-```` 
-Jako przykład został dołączony servlet `HomeServlet` wskazujący home.jsp, dla którego wyświetla się poprawny szablon strony głównej.
-
-### Dane do połączenia z bazą:
-
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
-
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
-
-### W przypadku wystąpienia błędu:
-````
-javax.naming.NameNotFoundException: Name [jdbc/scrumlab] is not bound in this Context. Unable to find [jdbc].
-````
-wykonujemy następujące kroki:
-
-Wybierz z górnego menu File –> Project Structure...
-
-W okienku, które się pojawi, kliknij z lewej strony w Facets następnie **Web**.
-
-Pojawi się okno, w którym kliknij **Add Application Server specific descriptor...**.
-
-![Screenshot](readme-img/context_03.png)
-
-Wybierz z listy serwer **Tomcat** i zaakceptuj przyciskiem **OK**.
-
-![Screenshot](readme-img/context_04.png)
-
-Na liście pojawi się plik **Tomcat Context Descriptor**. Potwierdź przyciskiem **OK**.
-
-![Screenshot](readme-img/context_05.png)
-
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
-
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
-
+A specific servlet is assigned to each user action. \
+It performs operations by using DAO classes with CRUD methods (which communicate with the database) and passes the data to be displayed to certain JSP files.
+Superadmin has a different appearance of the application and also has an additional tab "users" in the sidebar where a list of all users is displayed.
+He can edit user data, promote them to superadmins, or demote other superadmins to regular users.
+Superadmin can also block and unblock users.
